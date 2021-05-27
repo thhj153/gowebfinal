@@ -1,6 +1,9 @@
 const User = require("../models/User");
+const GRADE = require("../util/const");
 
 module.exports = async (req, res) => {
   const users = await User.find({}).populate("userid");
-  res.render("admin", { users });
+  const grade = GRADE;
+
+  res.render("admin", { users, grade });
 };
