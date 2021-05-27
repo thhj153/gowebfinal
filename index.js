@@ -2,6 +2,7 @@ const express = require("express");
 const app = new express();
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
+const expressSession = require("express-session");
 app.use(fileUpload());
 
 const newPostController = require("./controllers/newPost");
@@ -12,10 +13,10 @@ const newUserController = require("./controllers/newUser");
 const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
-const expressSession = require("express-session");
+const logoutController = require("./controllers/logout");
+const adminChangeGrade = require("./controllers/adminChangeGrade");
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
-const logoutController = require("./controllers/logout");
 const validateMiddleware = require("./middleware/validateMiddleware");
 
 mongoose.connect(
@@ -55,8 +56,10 @@ app.listen(port, () => {
 });
 
 global.loggedIn = null;
+global.admin = null;
 app.use("*", (req, res, next) => {
   loggedIn = req.session.userId;
+  admin = req.session.userId;
   next();
 });
 
@@ -73,6 +76,9 @@ app.get("/auth/logout", logoutController);
 app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
 
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
+
+app.get("/admin", adminChangeGrade);
+app.get("/admin/:id");
 
 app.post("/posts/store", authMiddleware, storePostController);
 
