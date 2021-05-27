@@ -37,10 +37,12 @@ UserSchema.pre("save", function (next) {
       break;
     case GRADE.GINDGI:
       user.grade = "진드기";
+      break;
     case GRADE.DAKDULGI:
       user.grade = "닭둘기";
-
+      break;
     default:
+      user.grade = "아메바";
       break;
   }
 });
