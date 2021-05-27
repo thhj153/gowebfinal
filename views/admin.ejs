@@ -17,55 +17,37 @@
             </div>
           </div>
         </div>
-        <<<<<<< HEAD </header>
+      </header>
 
-          <%- include('layouts/listbar'); -%>
-            <!-- Main Content -->
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                  <div class="post-preview">
-                    <a href="/users">
-                      <h2 class="post-title">
-                        Manage Users
-                      </h2>
-                    </a>
-                    <hr />
+      <%- include('layouts/listbar'); -%>
 
-                    <a href="/categories">
-                      <h2 class="post-title">
-                        Manage Category
-                      </h2>
-                    </a>
+        <!-- Main Content -->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-preview">
+                <a href="/userslist">
+                  <h2 class="post-title"> Manage Users </h2>
+                  <span class="meta"> 사용자 기본 정보 관리 </span>
+                </a>
+                <hr/>
 
-                    </br>
+                <a href="/categories">
+                  <h2 class="post-title"> Manage Category </h2>
+                  <span class="meta"> 게시판 관리 </span>
+                </a>
 
-
-                    <!-- <% for (var i=0; i < users.length; i++) { %>
-                <div class="post-preview">
-                  <p class="post-meta">
-                    <a href="/admin/<%= users[i]._id %>">
-                      <%= users[i].username %>
-                    </a>
-                  </p>
-                </div>
-                <hr />
-                <% } %> -->
-
-                    <!-- Pager -->
-                    <div class="clearfix">
-                      <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-                    </div>
-                  </div>
-                </div>
-                </form>
-
+                </br>
               </div>
+            </div>
+            </form>
 
-              <hr />
+          </div>
 
-              <%- include('layouts/footer'); -%>
-                <%- include('layouts/scripts'); -%>
+          <hr />
+
+          <%- include('layouts/footer'); -%>
+            <%- include('layouts/scripts'); -%>
   </body>
 
 </html>
