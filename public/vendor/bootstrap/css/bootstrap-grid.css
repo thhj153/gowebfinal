@@ -34,7 +34,7 @@ html {
   outline-color: aqua;
 }
 
-/* 200px로 잡고 다 깎기 */
+  /* max-width - 200px; */
 @media (min-width: 576px) {
   .container, .container-sm {
     max-width: 340px;
@@ -58,7 +58,7 @@ html {
     max-width: 940px;
   }
 }
-/* 200px로 잡고 다 깎기; 여기까지 */
+  /* max-width - 200px; */
 
 .row {
   display: -ms-flexbox;
