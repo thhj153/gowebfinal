@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('layouts/header'); -%>
+<%- include('layouts/header'); -%>
 
   <body>
     <%- include('layouts/navbar'); -%>
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>Clean Blog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+      <!-- Page Header -->
+      <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1>Clean Blog</h1>
+                <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
-    <!-- Main Content -->
-    <form action="users/register" method="POST" enctype="multipart/form-data">
+      </header>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <% for (var i = 0; i < users.length; i++) { %>
-          <div class="post-preview">
-            <p class="post-meta">
-              <a href="/admin/<%= users[i]._id %>">
-                <%= users[i].username %>
-              </a>
-              <select name="grade" id="grade">
-                <option value="<%= users[i].grade %>"><%= users[i].grade %></option>
-                <option value="<%= grade.GINDGI %>"><%= grade.GINDGI %></option>
-                <option value="<%= grade.DAKDULGI %>">
-                  <%= grade.DAKDULGI %>
-                </option>
-                <option value="<%= grade.AMEBA %>"><%= grade.AMEBA %></option>
-              </select>
-            </p>
+      <%- include('layouts/listbar'); -%>
+
+        <!-- Main Content -->
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-preview">
+                <a href="/userslist">
+                  <h2 class="post-title"> Manage Users </h2>
+                  <span class="meta"> 사용자 기본 정보 관리 </span>
+                </a>
+                <hr/>
+
+                <a href="/categories">
+                  <h2 class="post-title"> Manage Category </h2>
+                  <span class="meta"> 게시판 관리 </span>
+                </a>
+
+                </br>
+              </div>
+            </div>
+            </form>
+
           </div>
+
           <hr />
-          <% } %>
-          <!-- Pager -->
-          <div class="clearfix">
-            <button type='submit' class="btn btn-primary float-right" href="#"
-              >SAVE &rarr;</button>
-          </div>
-        </form>
 
-        </div>
-      </div>
-    </div>
-
-    <hr />
-
-    <%- include('layouts/footer'); -%> <%- include('layouts/scripts'); -%>
+          <%- include('layouts/footer'); -%>
+            <%- include('layouts/scripts'); -%>
   </body>
+
 </html>

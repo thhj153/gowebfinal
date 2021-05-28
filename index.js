@@ -14,6 +14,9 @@ const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
+
+const manageUserController = require("./controllers/manageUser");
+
 const adminChangeGrade = require("./controllers/adminChangeGrade");
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
@@ -89,6 +92,10 @@ app.post(
   redirectIfAuthenticatedMiddleware
   // storeCategoryController
 );
+
+// 어드민 권한 목록 추가
+app.get("/userslist", authMiddleware, manageUserController);
+
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
