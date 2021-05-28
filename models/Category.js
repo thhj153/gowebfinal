@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const CategorySchema = new Schema({
   /**
@@ -8,12 +8,12 @@ const CategorySchema = new Schema({
    * Category는 무엇을 위한 스키마인가요?
    */
   name: {
-    type : String,
-    required : true,
-  } 
+    type: String,
+    required: true,
+  },
 });
 
 //재홍 - 대소문자 변경
-const Category = mongoose.model('Category', CategorySchema);
+const Category = mongoose.model("Category", CategorySchema);
 
 module.exports = Category;

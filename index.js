@@ -16,7 +16,7 @@ const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
 
 const manageUserController = require("./controllers/manageUser");
-
+const manageCategoryController = require("./controllers/manageCategory");
 const adminManageBar = require("./controllers/adminManageBar");
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
@@ -60,10 +60,12 @@ app.listen(port, () => {
 
 global.loggedIn = null;
 global.admin = null;
+global.grade = null;
 app.use("*", (req, res, next) => {
   loggedIn = req.session.userId;
   admin = req.session.admin;
-  console.log(admin);
+  grade = req.session.grade;
+  console.log(grade);
   next();
 });
 
@@ -96,7 +98,7 @@ app.post(
 
 // 어드민 권한 목록 추가
 app.get("/userslist", authMiddleware, manageUserController);
-
+app.get("/categories", authMiddleware, manageCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
