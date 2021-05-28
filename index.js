@@ -16,6 +16,7 @@ const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
 
 const manageUserController = require("./controllers/manageUser");
+const updateUserController = require("./controllers/updateUserList");
 const manageCategoryController = require("./controllers/manageCategory");
 const adminManageBar = require("./controllers/adminManageBar");
 const authMiddleware = require("./middleware/authMiddleware");

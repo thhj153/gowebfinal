@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const GRADE = require("../util/const.js");
 const UserSchema = new Schema({
   username: {
     // pass in config object. and put in validation rules
