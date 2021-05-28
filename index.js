@@ -79,7 +79,16 @@ app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
 app.get("/admin", adminChangeGrade);
 app.get("/admin/:id", adminChangeGrade);
-
+app.post(
+  "/admin/users/register",
+  redirectIfAuthenticatedMiddleware,
+  storeUserController
+);
+app.post(
+  "/admin/category/register",
+  redirectIfAuthenticatedMiddleware
+  // storeCategoryController
+);
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
