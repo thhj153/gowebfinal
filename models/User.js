@@ -30,7 +30,7 @@ UserSchema.pre("save", function (next) {
     user.password = hash;
     next();
   });
-  user.admin = true;
+  user.admin = false;
   switch (user.grade) {
     case null:
       user.grade = "아메바";

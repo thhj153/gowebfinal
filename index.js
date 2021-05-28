@@ -17,7 +17,7 @@ const logoutController = require("./controllers/logout");
 
 const manageUserController = require("./controllers/manageUser");
 
-const adminChangeGrade = require("./controllers/adminChangeGrade");
+const adminManageBar = require("./controllers/adminManageBar");
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const validateMiddleware = require("./middleware/validateMiddleware");
@@ -62,7 +62,8 @@ global.loggedIn = null;
 global.admin = null;
 app.use("*", (req, res, next) => {
   loggedIn = req.session.userId;
-  admin = req.session.userId;
+  admin = req.session.admin;
+  console.log(admin);
   next();
 });
 
@@ -80,8 +81,8 @@ app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
 
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
-app.get("/admin", adminChangeGrade);
-app.get("/admin/:id", adminChangeGrade);
+app.get("/admin", adminManageBar);
+app.get("/admin/:id", adminManageBar);
 app.post(
   "/admin/users/register",
   redirectIfAuthenticatedMiddleware,
