@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt')
-const User = require('../models/User')
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
 
-module.exports = (req, res) =>{
-    const { username, password } = req.body;
+module.exports = (req, res) => {
+  const { username, password } = req.body;
 
     User.findOne({username:username}, (error,user) => {      
       if (user){           
@@ -30,4 +30,3 @@ module.exports = (req, res) =>{
       }
     })
 }
-  

@@ -1,6 +1,5 @@
 const User = require('../models/User.js')
 
-// 아래 요소 DB에 맞게 수정부탁 드립니다.
 /**
  * 이 컨트롤러는 무엇을 위한 것인지 명시 필요.
  * UserList를 갖고 오기 위함인지, 새롭게 정의된 User를 갖고 오기 위함인지 알아야함
@@ -12,6 +11,7 @@ const User = require('../models/User.js')
  */
 module.exports = async (req, res) =>{
     const user = await User.find({}); //리스트를 갖고 온다면 이렇게만 써도 충분합니다
+
     // console.log(req.session)      
     res.render('userlist',{
         user,
