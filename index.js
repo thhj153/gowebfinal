@@ -61,12 +61,12 @@ app.listen(port, () => {
 
 global.loggedIn = null;
 global.admin = null;
-global.grade = null;
+
 app.use("*", (req, res, next) => {
   loggedIn = req.session.userId;
   admin = req.session.admin;
   grade = req.session.grade;
-  console.log(grade);
+  // console.log(grade);
   next();
 });
 
@@ -86,20 +86,11 @@ app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
 app.get("/admin", adminManageBar);
 app.get("/admin/:id", adminManageBar);
-app.post(
-  "/admin/users/register",
-  redirectIfAuthenticatedMiddleware,
-  storeUserController
-);
-app.post(
-  "/admin/category/register",
-  redirectIfAuthenticatedMiddleware
-  // storeCategoryController
-);
 
 // 어드민 권한 목록 추가
 app.get("/userslist", authMiddleware, manageUserController);
 app.get("/categories", authMiddleware, manageCategoryController);
+// app.post("/categories/store", authMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(

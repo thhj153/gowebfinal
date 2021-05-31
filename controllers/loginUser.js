@@ -36,7 +36,7 @@ module.exports = (req, res) => {
               break;
           }
           req.session.grade = user.grade;
-          console.log(req.session.grade);
+          // console.log(req.session.grade);
 
           res.redirect("/");
         } else {
