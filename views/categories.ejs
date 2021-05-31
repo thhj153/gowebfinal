@@ -28,7 +28,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
           <form
-            action="/posts/store"
+            action="/categories/store"
             method="POST"
             enctype="multipart/form-data"
           >
@@ -39,9 +39,18 @@
                   type="text"
                   class="form-control"
                   placeholder="Title"
-                  id="title"
-                  name="title"
+                  id="name"
+                  name="name"
                 />
+                <select name="grade" id="grade">
+                  <option value="<%= grade.GINDGI %>">
+                    <%= grade.GINDGI %>
+                  </option>
+                  <option value="<%= grade.DAKDULGI %>">
+                    <%= grade.DAKDULGI %>
+                  </option>
+                  <option value="<%= grade.AMEBA %>"><%= grade.AMEBA %></option>
+                </select>
               </div>
             </div>
 

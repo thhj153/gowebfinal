@@ -22,7 +22,7 @@
 
             <% include('layouts/listbar') %>
 
-                <form action="/admin/users/register" method="POST" enctype="multipart/form-data">
+                <form action="/userslist" method="POST" enctype="multipart/form-data">
 
                     <div class="container">
                         <div class="row">
@@ -34,7 +34,7 @@
                                                 <%= users[i].username %>
                                             </a>
                                             <select name="grade" id="grade">
-                                                <option value="<%= users[i].grade %>">
+                                                <option selected value="<%= users[i].grade %>">
                                                     <%= users[i].grade %>
                                                 </option>
                                                 <option value="<%= grade.GINDGI %>">

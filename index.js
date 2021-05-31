@@ -14,7 +14,7 @@ const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
-
+const storeCategoryController = require("./controllers/storeCategory");
 const manageUserController = require("./controllers/manageUser");
 const updateUserController = require("./controllers/updateUserList");
 const manageCategoryController = require("./controllers/manageCategory");
@@ -90,9 +90,10 @@ app.get("/admin", adminManageBar);
 app.get("/admin/:id", adminManageBar);
 
 // 어드민 권한 목록 추가
-app.get("/userslist", authMiddleware, manageUserController);
-app.get("/categories", authMiddleware, manageCategoryController);
-app.post("/categories/store", authMiddleware, storeCategoryController);
+app.get("/userslist", adminMiddleware, manageUserController);
+app.post("/userslist/store", adminMiddleware, updateUserController);
+app.get("/categories", adminMiddleware, manageCategoryController);
+app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
