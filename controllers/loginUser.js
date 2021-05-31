@@ -19,10 +19,6 @@ module.exports = (req, res) => {
           req.session.admin = user.admin;
           switch (user.grade) {
             case GRADE.AMEBA:
-              /**
-               * switch문에서 null인지 아닌지 확인하는 것은 그다지 좋지 않은 방식이므로...
-               * 참고로 위의 hash 함수 내부에서 next()를 호출하기 때문에 이 switch 블록은 실행이 안 됩니다;;
-               */
               user.grade = "아메바";
               break;
             case GRADE.GINDGI:

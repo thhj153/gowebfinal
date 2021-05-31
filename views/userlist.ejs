@@ -30,11 +30,14 @@
                                 <% for (var i=0; i < users.length; i++) { %>
                                     <div class="post-preview">
                                         <p class="post-meta">
+                                            <!-- id 맵핑을 위한 input field. 이용자기 임의로 수정 불가능하도록 해야함 -->
+                                            <input type='text' name='userList[][id]' value='<%= users[i]._id %>'>
                                             <a href="/admin/<%= users[i]._id %>">
                                                 <%= users[i].username %>
                                             </a>
-                                            <select name="grade" id="grade">
-                                                <option selected value="<%= users[i].grade %>">
+                                            <!-- list mapping. POST로 넘어간 자료의 구조는 확인 필요 -->
+                                            <select name='userList[][grade]' id="grade">
+                                                <option value="<%= users[i].grade %>">
                                                     <%= users[i].grade %>
                                                 </option>
                                                 <option value="<%= grade.GINDGI %>">
