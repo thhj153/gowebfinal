@@ -90,8 +90,8 @@ app.get("/admin", adminManageBar);
 app.get("/admin/:id", adminManageBar);
 
 // 어드민 권한 목록 추가
-app.get("/userslist", adminMiddleware, manageUserController);
-app.post("/userslist/store", adminMiddleware, updateUserController);
+app.get("/userlist", adminMiddleware, manageUserController);
+app.post("/userlist/store", adminMiddleware, updateUserController);
 app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
