@@ -19,7 +19,9 @@ const manageUserController = require("./controllers/manageUser");
 const updateUserController = require("./controllers/updateUserList");
 const manageCategoryController = require("./controllers/manageCategory");
 const adminManageBar = require("./controllers/adminManageBar");
+const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
+
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const validateMiddleware = require("./middleware/validateMiddleware");
 
@@ -90,7 +92,7 @@ app.get("/admin/:id", adminManageBar);
 // 어드민 권한 목록 추가
 app.get("/userslist", authMiddleware, manageUserController);
 app.get("/categories", authMiddleware, manageCategoryController);
-// app.post("/categories/store", authMiddleware, storeCategoryController);
+app.post("/categories/store", authMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
