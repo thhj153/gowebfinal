@@ -1,7 +1,10 @@
-const Category = require("../models/Category.js");
-const GRADE = require("../util/const.js");
+const Category = require('../models/Category');
 
-module.exports = async (req, res) => {
-  await Category.remove({ name: req.body });
-  const grade = GRADE;
-};
+module.exports = (req, res) => {
+    Category.deleteOne({ 'name' : req.body.name }, async (err) => {
+        const categories = await Category.find({});
+        res.render("categories", {
+          categories,
+        });
+    })
+} 
