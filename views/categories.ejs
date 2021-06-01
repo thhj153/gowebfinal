@@ -82,9 +82,9 @@
                   <div class="post-preview">
                     <p class="categories">
                       <%= categories[i].name %>
-                        <button type="submit" class="btn btn-primary delete">
+                        <a href="/categories/delete?name=<%= categories[i].name %>"  class="btn btn-primary delete">
                           X
-                        </button>
+                        </a>
                     </p>
                   </div>
                   <hr />

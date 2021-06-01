@@ -88,8 +88,6 @@ app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
 
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
-
-
 app.get("/admin", adminManageBar);
 app.get("/admin/:id", adminManageBar);
 
@@ -99,9 +97,6 @@ app.post("/userlist/store", adminMiddleware, updateUserController);
 app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
-
-
-
 
 app.post(
   "/users/register",
