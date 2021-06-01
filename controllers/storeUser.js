@@ -4,10 +4,10 @@ module.exports = (req, res) => {
   User.create({
     ...req.body,
     grade: "아메바",
-    admin: false,
+    admin: true,
   } , (error, user) => {
     if (error) {
-      console.log("create error!");
+      console.log("create error!" + error);
       return res.redirect("/auth/register");
     }
     res.redirect("/");

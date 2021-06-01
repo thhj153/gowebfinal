@@ -18,6 +18,11 @@ const storeCategoryController = require("./controllers/storeCategory");
 const manageUserController = require("./controllers/manageUser");
 const updateUserController = require("./controllers/updateUserList");
 const manageCategoryController = require("./controllers/manageCategory");
+<<<<<<< Updated upstream
+=======
+//delete category
+const deleteCategoryController = require("./controllers/deleteCategory");
+>>>>>>> Stashed changes
 const adminManageBar = require("./controllers/adminManageBar");
 const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
@@ -100,7 +105,12 @@ app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
 
+<<<<<<< Updated upstream
 
+=======
+// 카테고리 삭제를 위한 가상 페이지
+app.post("/categories/delete", adminMiddleware, deleteCategoryController);
+>>>>>>> Stashed changes
 
 
 app.post(
