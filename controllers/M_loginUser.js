@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const GRADE = require("../util/const.js");
 
-module.exports = (req, res) => {
+module.exports = async(req, res) => {
   const { username, password } = req.body;
 
   User.findOne({ username: username }, (error, user) => {
