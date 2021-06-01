@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('layouts/header'); -%>
+<%- include('layouts/header'); -%>
 
   <body>
     <%- include('layouts/navbar'); -%>
 
-    <!-- Page Header -->
-    <header
-      class="masthead"
-      style="background-image: url('/img/contact-bg.jpg')"
-    >
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
-              <h1>Manage Categories</h1>
+      <!-- Page Header -->
+      <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="page-heading">
+                <h1>Manage Categories</h1>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
-          <form
-            action="/categories/store"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Title"
-                  id="name"
-                  name="name"
-                />
-                <select name="grade" id="grade">
-                  <option value="<%= grade.GINDGI %>">
-                    <%= grade.GINDGI %>
-                  </option>
-                  <option value="<%= grade.DAKDULGI %>">
-                    <%= grade.DAKDULGI %>
-                  </option>
-                  <option value="<%= grade.AMEBA %>"><%= grade.AMEBA %></option>
-                </select>
-              </div>
-            </div>
+      <!-- Category Navigation -->
 
-            <div class="form-group">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                id="sendMessageButton"
-              >
-                Send
-              </button>
-            </div>
-            <div>
+      <nav class="navbar navbar-expand-lg navbar-brand" id="listBar"
+        style="width: 100%; margin-bottom: 30px; font-size: 13px;">
+        <div class="container">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#listBarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            Category
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="listBarResponsive">
+            <ul class="navbar-nav ml-auto">
+
               <% for (var i=0; i < categories.length; i++) { %>
-              <div class="post-preview">
-                <p class="categories">
-                  <%= categories[i].name %>
-                  <button type="submit" class="btn btn-primary delete">
-                    X
-                  </button>
-                </p>
+                <li class="nav-item">
+                  <a class="nav-link" href="/<%= categories[i]._id %>">
+                    <%=categories[i].name%>
+                </li>
+                </a>
+                <% } %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Category Navigation End -->
+
+      <!-- Main Content -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
+            <form action="/categories/store" method="POST" enctype="multipart/form-data">
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Title</label>
+                  <input type="text" class="form-control" placeholder="Title" id="name" name="name" />
+                  <select name="grade" id="grade">
+                    <option value="<%= grade.GINDGI %>">
+                      <%= grade.GINDGI %>
+                    </option>
+                    <option value="<%= grade.DAKDULGI %>">
+                      <%= grade.DAKDULGI %>
+                    </option>
+                    <option value="<%= grade.AMEBA %>">
+                      <%= grade.AMEBA %>
+                    </option>
+                  </select>
+                </div>
               </div>
-              <hr />
-              <% } %>
-            </div>
-          </form>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="sendMessageButton">
+                  Send
+                </button>
+              </div>
+              <div>
+                <% for (var i=0; i < categories.length; i++) { %>
+                  <div class="post-preview">
+                    <p class="categories">
+                      <%= categories[i].name %>
+                        <button type="submit" class="btn btn-primary delete">
+                          X
+                        </button>
+                    </p>
+                  </div>
+                  <hr />
+                  <% } %>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <hr />
-    <%- include('layouts/footer'); -%> <%- include('layouts/scripts'); -%>
+      <hr />
+      <%- include('layouts/footer'); -%>
+        <%- include('layouts/scripts'); -%>
   </body>
+
 </html>
