@@ -5,22 +5,22 @@ const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
 app.use(fileUpload());
 
-const newPostController = require("./controllers/newPost");
-const homeController = require("./controllers/home");
-const storePostController = require("./controllers/storePost");
-const getPostController = require("./controllers/getPost");
-const newUserController = require("./controllers/newUser");
-const storeUserController = require("./controllers/storeUser");
-const loginController = require("./controllers/login");
-const loginUserController = require("./controllers/loginUser");
-const logoutController = require("./controllers/logout");
-const storeCategoryController = require("./controllers/storeCategory");
-const manageUserController = require("./controllers/manageUser");
-const updateUserController = require("./controllers/updateUserList");
-const manageCategoryController = require("./controllers/manageCategory");
-//delete category
-const deleteCategoryController = require("./controllers/deleteCategory");
-const adminManageBar = require("./controllers/adminManageBar");
+const newPostController = require("./controllers/R_newPost");
+const homeController = require("./controllers/R_home");
+const manageUserController = require("./controllers/R_manageUser");
+const getPostController = require("./controllers/R_getPost");
+const newUserController = require("./controllers/R_newUser");
+const adminManageController = require("./controllers/R_adminManage");
+const loginController = require("./controllers/R_login");
+const manageCategoryController = require("./controllers/R_category");
+
+const logoutController = require("./controllers/M_logout");
+const loginUserController = require("./controllers/M_loginUser");
+const storePostController = require("./controllers/M_storePost");
+const storeCategoryController = require("./controllers/M_storeCategory");
+const storeUserController = require("./controllers/M_storeUser");
+const updateUserController = require("./controllers/M_updateUserList");
+
 const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
 
@@ -35,11 +35,6 @@ mongoose.connect(
     useCreateIndex: true,
   }
 );
-
-// const db = mongoose.connection;
-// db.once("open", () => {
-//   console.log("connected...");
-// });
 
 const ejs = require("ejs");
 app.set("view engine", "ejs");
@@ -74,7 +69,7 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/posts/store", validateMiddleware);
+app.use("/posts/store", validateMiddleware, manageCategoryController);
 
 app.get("/posts/new", authMiddleware, newPostController);
 
@@ -90,10 +85,8 @@ app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
 
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
-
-
-app.get("/admin", adminManageBar);
-app.get("/admin/:id", adminManageBar);
+app.get("/admin", adminManageController);
+app.get("/admin/:id", adminManageController);
 
 // 어드민 권한 목록 추가
 app.get("/userlist", adminMiddleware, manageUserController);
@@ -101,10 +94,6 @@ app.post("/userlist/store", adminMiddleware, updateUserController);
 app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/posts/store", authMiddleware, storePostController);
-
-// 카테고리 삭제를 위한 가상 페이지
-app.post("/categories/delete", adminMiddleware, deleteCategoryController);
-
 
 app.post(
   "/users/register",
