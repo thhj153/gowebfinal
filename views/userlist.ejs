@@ -31,7 +31,7 @@
                                     <div class="post-preview">
                                         <p class="post-meta">
                                             <!-- id 맵핑을 위한 input field. 이용자기 임의로 수정 불가능하도록 해야함 -->
-                                            <input type='text' name='userList' value='<%= users[i]._id %>'>
+                                            <input type='text' name='userList' value='<%= users[i]._id %>' style="display: none;">
                                             <a href="/admin/<%= users[i]._id %>">
                                                 <%= users[i].username %>
                                             </a>
