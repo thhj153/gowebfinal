@@ -31,12 +31,13 @@
                                     <div class="post-preview">
                                         <p class="post-meta">
                                             <!-- id 맵핑을 위한 input field. 이용자기 임의로 수정 불가능하도록 해야함 -->
-                                            <input type='text' name='userList' value='<%= users[i]._id %>' style="display: none;">
+                                            <input type='text' name='userList[<%= i %>].id' value='<%= users[i]._id %>' style="display: none;">
                                             <a href="/admin/<%= users[i]._id %>">
                                                 <%= users[i].username %>
                                             </a>
                                             <!-- list mapping. POST로 넘어간 자료의 구조는 확인 필요 -->
-                                            <select name='userList' id="grade">
+                                            <select name='userList[<%= i %>].grade' id="grade">
+
                                                 <option value="<%= users[i].grade %>">
                                                     <%= users[i].grade %>
                                                 </option>
