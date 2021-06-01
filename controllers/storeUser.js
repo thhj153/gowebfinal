@@ -4,7 +4,7 @@ module.exports = (req, res) => {
   User.create({
     ...req.body,
     grade: "아메바",
-    admin: true,
+    admin: false,
   } , (error, user) => {
     if (error) {
       console.log("create error!" + error);
