@@ -6,6 +6,10 @@ const CategorySchema = new Schema({
     type: String,
     required: true,
   },
+  grade: {
+    type: String,
+    required: true,
+  },
 });
 
 const Category = mongoose.model("Category", CategorySchema);
