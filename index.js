@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
 app.use(fileUpload());
-
 const newPostController = require("./controllers/R_newPost");
 const homeController = require("./controllers/R_home");
 const manageUserController = require("./controllers/R_manageUser");
@@ -13,7 +12,7 @@ const newUserController = require("./controllers/R_newUser");
 const adminManageController = require("./controllers/R_adminManage");
 const loginController = require("./controllers/R_login");
 const manageCategoryController = require("./controllers/R_category");
-
+const categoryBarController = require("./controllers/R_categoryBar");
 const logoutController = require("./controllers/M_logout");
 const loginUserController = require("./controllers/M_loginUser");
 const storePostController = require("./controllers/M_storePost");
@@ -37,6 +36,7 @@ mongoose.connect(
 );
 
 const ejs = require("ejs");
+const Category = require("./models/Category");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -69,13 +69,13 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/posts/store", validateMiddleware, manageCategoryController);
+app.use("/posts/store", validateMiddleware, storePostController);
 
 app.get("/posts/new", authMiddleware, newPostController);
 
 app.get("/", homeController);
 
-app.get("/layouts/categorybar", manageCategoryController);
+app.get("/layouts/categorybar", categoryBarController);
 
 app.get("/post/:id", getPostController);
 
@@ -93,7 +93,7 @@ app.get("/userlist", adminMiddleware, manageUserController);
 app.post("/userlist/store", adminMiddleware, updateUserController);
 app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
-app.post("/posts/store", authMiddleware, storePostController);
+// app.post("/posts/store", authMiddleware, storePostController);
 
 app.post(
   "/users/register",
@@ -107,4 +107,7 @@ app.post(
   loginUserController
 );
 
-app.use((req, res) => res.render("notfound"));
+app.use(async (req, res) => {
+  const categories = await Category.find({});
+  res.render("notfound", { categories });
+});
