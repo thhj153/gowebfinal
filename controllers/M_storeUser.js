@@ -6,10 +6,12 @@ module.exports = (req, res) => {
     grade: "아메바",
     admin: false,
   } , (error, user) => {
+
     if (error) {
       console.log("create error!");
       return res.redirect("/auth/register");
     }
+
     res.redirect("/");
   });
 };

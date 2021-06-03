@@ -10,6 +10,10 @@ const CategorySchema = new Schema({
     type: String,
     required: true,
   },
+  lookable: {
+    type: String,
+    required: true,
+  }
 });
 
 const Category = mongoose.model("Category", CategorySchema);
