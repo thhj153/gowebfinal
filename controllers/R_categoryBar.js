@@ -1,8 +1,10 @@
 const Category = require("../models/Category.js");
-
+const GRADE = require("../util/const.js");
 module.exports = async (req, res) => {
   const categories = await Category.find({});
-  res.render("register", {
+  const grade = GRADE;
+  res.render("layouts/categorybar", {
     categories,
+    grade,
   });
 };
