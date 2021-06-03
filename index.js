@@ -62,6 +62,7 @@ global.loggedIn = null;
 global.admin = null;
 
 app.use("*", (req, res, next) => {
+  userInfo = req.session.User;
   loggedIn = req.session.userId;
   admin = req.session.admin;
   grade = req.session.grade;
