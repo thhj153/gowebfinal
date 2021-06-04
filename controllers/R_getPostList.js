@@ -2,13 +2,16 @@ const BlogPost = require('../models/BlogPost.js')
 const Category = require("../models/Category.js")
 
 module.exports = async (req,res) =>{
-    let categoryID = "";
-    let hrefData = location.href.split('?');
-    if(hrefData.length > 1) {
-        categoryID += hrefData[1].split('=')[1];
-    }
-    const blogpost =  await BlogPost.find({'category' : categoryID});
+
+    let categoryID = req.params.id;
+
+    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category');
     const userInfo = req.session.User;
+    
+    const cat = await Category.findById(categoryID);
+    console.log(cat);
+    const catName = cat.name;
+
     const categories = await Category.find({});
     // console.log(blogpost)
     /**
@@ -18,8 +21,9 @@ module.exports = async (req,res) =>{
      * 작동할지 안할지 잘 모르겠네요.
      */
     res.render('postList', {
+        catName,
         userInfo,
-        blogpost,
+        blogposts,
         categories
     })
 }

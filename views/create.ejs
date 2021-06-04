@@ -55,7 +55,20 @@
                 ></textarea>
               </div>
             </div>
-
+            <% if(admin){ %>
+            <input
+              type="checkbox"
+              name="notice"
+              id="notice"
+              
+            />공지사항 <% } %>
+            <select name="category" id="category">
+              <% for (var i=0; i < categories.length; i++) { %>
+              <option value=<%=categories[i]._id%>>
+                <%=categories[i].name%>
+              </option>
+              <% } %>
+            </select>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Image</label>
