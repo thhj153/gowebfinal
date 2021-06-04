@@ -31,4 +31,20 @@
   </div>
 </nav>
 
-<!-- Category Navigation End -->
+          <div class="collapse navbar-collapse" id="listBarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+              <% for (var i=0; i < categories.length; i++) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/postlist?id=<%= categories[i]._id %>"> 
+                    <%=categories[i].name%>
+                </li>
+                </a>
+                <% } %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Category Navigation End -->

@@ -22,58 +22,46 @@
       </div>
     </header>
 
-    <%- include('layouts/categorybar'); -%>
+      <!-- Category Navigation -->
 
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
-          <form
-            action="/categories/store"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Title"
-                  id="name"
-                  name="name"
-                />
-                <select name="grade" id="grade">
-                  <option value="<%= grade.GINDGI %>">
-                    <%= grade.GINDGI %>
-                  </option>
-                  <option value="<%= grade.DAKDULGI %>">
-                    <%= grade.DAKDULGI %>
-                  </option>
-                  <option value="<%= grade.AMEBA %>"><%= grade.AMEBA %></option>
-                </select>
-              </div>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-brand" id="listBar"
+        style="width: 100%; margin-bottom: 30px; font-size: 13px;">
+        <div class="container">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#listBarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            Category
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="listBarResponsive">
+            <ul class="navbar-nav ml-auto">
 
-            <div class="form-group">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                id="sendMessageButton"
-              >
-                Send
-              </button>
-            </div>
-            <div>
               <% for (var i=0; i < categories.length; i++) { %>
-              <div class="post-preview">
-                <p class="categories">
-                  <%= categories[i].name %>
-                  <select name="grade" id="grade">
-                    <option value="<%=categories[i].grade %>">
-                      <%= categories[i].grade %>
-                    </option>
+                <li class="nav-item">
+                  <a class="nav-link" href="/<%= categories[i]._id %>">
+                    <%=categories[i].name%>
+                </li>
+                </a>
+                <% } %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Category Navigation End -->
+
+      <!-- Main Content -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
+            <form id='mainForm' action="/categories/store" method="POST" enctype="multipart/form-data">
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Title</label>
+                  <input type="text" class="form-control" placeholder="Title" id="name" name="name" form='mainForm'/>
+                  <select name="grade" id="grade" form='mainForm'>
                     <option value="<%= grade.GINDGI %>">
                       <%= grade.GINDGI %>
                     </option>
@@ -84,23 +72,38 @@
                       <%= grade.AMEBA %>
                     </option>
                   </select>
-                  <a
-                    href="/categories/delete?name=<%= categories[i].name %>"
-                    class="btn btn-primary delete"
-                  >
-                    X
-                  </a>
-                </p>
+                </div>
               </div>
-              <hr />
-              <% } %>
-            </div>
-          </form>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="sendMessageButton" form="mainForm">
+                  Send
+                </button>
+              </div>
+              <div>
+                <% for (var i=0; i < categories.length; i++) { %>
+                  <form id='subForm<%= i %>' action="/categories/delete" method="POST" enctype="multipart/form-data">
+                    <div class="post-preview">
+                      <p class="categories">
+                        <input type='text' name='name' value='<%= categories[i].name %>' style="display: none;" form="subForm<%= i %>">
+                        <%= categories[i].name %>  
+                        <button type="submit" class="btn btn-primary delete" form="subForm<%= i %>">
+                            X
+                          </button>
+                      </p>
+                    </div>
+                  </form>
+                  <hr />
+                  <% } %>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
 
     <hr />
-    <%- include('layouts/footer'); -%> <%- include('layouts/scripts'); -%>
+    <%- include('layouts/footer'); -%> 
+    <%- include('layouts/scripts'); -%>
   </body>
 </html>
