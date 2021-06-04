@@ -1,9 +1,13 @@
 const User = require("../models/User.js");
-const path = require("path");
 
 module.exports = (req, res) => {
-  User.create(req.body, (error, user) => {
+  User.create({
+    ...req.body,
+    grade: "아메바",
+    admin: false,
+  } , (error, user) => {
     if (error) {
+      console.log("create error!" + error);
       return res.redirect("/auth/register");
     }
     res.redirect("/");
