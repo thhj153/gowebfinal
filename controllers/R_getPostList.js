@@ -2,6 +2,7 @@ const BlogPost = require('../models/BlogPost.js')
 const Category = require("../models/Category.js")
 
 module.exports = async (req,res) =>{
+
     let categoryID = req.params.id;
 
     const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category');
