@@ -1,10 +1,14 @@
 <!-- Category Navigation -->
 <style>
+  .containers:hover {
+    background-color: aliceblue;
+    border-radius: 10px;
+  }
   .containers:hover .needtohidden {
-    background-color: #0085a1;
+    background-color: navy;
     text-align: center;
     display: block;
-    animation: views 1s;
+    animation: views 0.5s;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     padding-top: 10px;
@@ -31,23 +35,25 @@
 }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-brand" id="cateBar"
+<nav class="navbar navbar-expand-lg navbar-light" id="cateBar"
   style="width: 100%; font-size: 13px;">
   <div class="container">
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
       data-target="#listBarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle navigation" style="margin-bottom: 10px;">
       Category
       <i class="fas fa-bars"></i>
     </button>
     
     <div class="collapse navbar-collapse" id="listBarResponsive">
-      <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center; ">
+      <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center; margin-right: auto !important;">
+
+        </li>
         <% for (var i=0; i < categories.length; i++) { %>
-          <li class="containers" style="font-family:'Times New Roman', Times, serif; 
-          font-size: 16px; padding-top: 10px; height: 75px;">
-                <a href= "/postlist/<%= categories[i]._id %>">
+          <li class="containers" style="font-family:'BMJUA'; 
+          font-size: 16px; padding-top: 10px; height: 75px; min-width: 75px;">
+                <a href= "/postlist/<%= categories[i]._id %>" style="text-decoration: none !important;">
                   <div style="text-align:initial; margin: 0 auto;"> 
                   <span class="maintext">
                   
@@ -57,17 +63,20 @@
                     &nbsp; &nbsp;<%=categories[i].name%>&nbsp; &nbsp;
                   <% } %>
                 </span>
-                <span class="needtohidden">
-                  <% if (categories[i].name.length>= 12) { %>
-                    <%=categories[i].name%></br>
-                  <% } %>
-                  <%=categories[i].grade%> 이상 게시판</span>
                 </div>
+            
+            <span class="needtohidden" style="font-family: 'SAir'; font-size: 14px; font-weight: normal; text-align: center;
+             width: auto !important; margin-left: 10px !important; margin-right: 10px;">
+              <!-- <% if (categories[i].name.length>= 12) { %> -->
+                <!-- &nbsp; <%=categories[i].name%> &nbsp;</br> -->
+              <!-- <% } %> -->
+              &nbsp;  '<%=categories[i].grade%>' 이상 게시판 &nbsp;</span>
             </a>
           </li>
 
         <% } %>  
 
+        </li>
       </ul>
     </div>
   </div>

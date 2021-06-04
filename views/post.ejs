@@ -32,40 +32,31 @@
 
                 <span class="meta">
                   <% if (blogpost.body.length>= 70) { %>
-                    <h2 class="subheading" style="font-size: 18px;
-                  font-weight: 100 !important;
-                  font-style: italic !important; 
-                  font-family: 'Times New Roman', Times, serif !important;">
+                    <h2 class="subheading" style="font-size: 18px; line-height: 180%; margin-top: -9px;
+                  font-weight: 100 !important; font-style: oblique !important; font-family: 'KOTRA_BOLD-Bold' !important;">
                       <%= blogpost.body.substring(0, 70) + " ……" %>
                     </h2>
                     <% } else {%>
-                      <%= blogpost.body %>
+                      <%- blogpost.body.content -%>
                         <% } %>
-
                 </span>
-
-
-
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </header>
+
       <%- include('layouts/categorybar'); -%>
 
         <!-- Post Content -->
         <article>
           <div class="container">
             <div class="row">
-              <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="col-lg-8 col-md-10 mx-auto" style="font-size: 15px; font-family: 'YESerif'; line-height: 175%;">
                 <%= blogpost.body %>
               </div>
             </div>
-            <div class="container" style="position: relative; width:max-content; ">
+            <div class="container" style="position: relative; width:max-content;">
             </br>
               <a href="/post/modify" class="btn btn-primary post" >MODIFY</a>
               <a href="/post/delete" class="btn btn-primary post" >DELETE</a>

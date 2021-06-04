@@ -3,6 +3,55 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
  */
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NexonLv1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ohsquare';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sur';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YESerif';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESMyoungjo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     font-size: 20px;
     color: #212529;
@@ -25,7 +74,7 @@ h4,
 h5,
 h6 {
     font-weight: 800;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'KOTRA_BOLD-Bold', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 a {
@@ -35,7 +84,7 @@ a {
 
 a:focus,
 a:hover {
-    color: #0085a1
+    color: navy;
 }
 
 blockquote {
@@ -62,13 +111,13 @@ blockquote {
 
 ::-moz-selection {
     color: #fff;
-    background: #0085a1;
+    background: navy;
     text-shadow: none
 }
 
 ::selection {
     color: #fff;
-    background: #0085a1;
+    background: navy;
     text-shadow: none
 }
 
@@ -91,26 +140,41 @@ img::-moz-selection {
     position: absolute;
     border-bottom: 1px solid #e9ecef;
     background-color: #fff;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'BMJUA', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav .navbar-brand {
-    font-weight: 800;
+    font-family: 'BMJUA';
+    font-size: 24px;
     color: #343a40
 }
 
 #mainNav .navbar-toggler {
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 16px;
+    padding: 13px;
+    text-transform: uppercase;
+    color: #343a40
+}
+
+#cateBar .navbar-brand {
+    font-family: 'BMJUA';
+    font-size: 24px;
+    color: #343a40
+}
+
+#cateBar .navbar-toggler {
+    font-family: 'BMJUA';
+    font-size: 16px;
     padding: 13px;
     text-transform: uppercase;
     color: #343a40
 }
 
 #mainNav .navbar-nav>li.nav-item>a {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-size: 16px;
+    letter-spacing: 1.7px;
+    font-weight: bolder;
+    word-spacing: 3px;
     text-transform: uppercase
 }
 
@@ -146,7 +210,9 @@ img::-moz-selection {
         transition: background-color .2s;
         transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
-        backface-visibility: hidden
+        backface-visibility: hidden;
+        font-family: 'BMJUA';
+        font-weight: 100;
     }
 
     #mainNav.is-fixed {
@@ -163,7 +229,7 @@ img::-moz-selection {
 
     #mainNav.is-fixed .navbar-brand:focus,
     #mainNav.is-fixed .navbar-brand:hover {
-        color: #0085a1
+        color: navy;
     }
 
     #mainNav.is-fixed .navbar-nav>li.nav-item>a {
@@ -172,7 +238,7 @@ img::-moz-selection {
 
     #mainNav.is-fixed .navbar-nav>li.nav-item>a:focus,
     #mainNav.is-fixed .navbar-nav>li.nav-item>a:hover {
-        color: #0085a1
+        color: navy;
     }
 
     #mainNav.is-visible {
@@ -233,12 +299,13 @@ header.masthead .site-heading h1 {
 
 header.masthead .page-heading .subheading,
 header.masthead .site-heading .subheading {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 300;
     line-height: 1.1;
     display: block;
     margin: 10px 0 0;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'KOTRA_BOLD-Bold';
+    font-weight: lighter;
 }
 
 @media only screen and (min-width:768px) {
@@ -294,13 +361,13 @@ header.masthead .post-heading .meta a {
 .post-preview>a:focus,
 .post-preview>a:hover {
     text-decoration: none;
-    color: #0085a1
+    color: navy;
 }
 
 .post-preview>a>.post-title {
-    font-size: 30px;
-    margin-top: 30px;
-    margin-bottom: 10px
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px
 }
 
 .post-preview>a>.post-subtitle {
@@ -309,8 +376,8 @@ header.masthead .post-heading .meta a {
 }
 
 .post-preview>.post-meta {
-    font-size: 18px;
-    font-style: italic;
+    font-size: 15px;
+    font-family: 'YESerif';
     margin-top: 0;
     color: #868e96
 }
@@ -323,12 +390,14 @@ header.masthead .post-heading .meta a {
 .post-preview>.post-meta>a:focus,
 .post-preview>.post-meta>a:hover {
     text-decoration: underline;
-    color: #0085a1
+    color: navy;
 }
 
 @media only screen and (min-width:768px) {
     .post-preview>a>.post-title {
-        font-size: 36px
+        font-size: 23px;
+        margin-top: 23px;
+        margin-bottom: 10px;
     }
 }
 
@@ -382,7 +451,7 @@ header.masthead .post-heading .meta a {
 }
 
 .floating-label-form-group-with-focus label {
-    color: #0085a1
+    color: navy;
 }
 
 form .form-group:first-child .floating-label-form-group {
@@ -415,8 +484,8 @@ footer .copyright {
 }
 
 .btn-primary {
-    background-color: #0085a1;
-    border-color: #0085a1
+    background-color: navy;
+    border-color: navy;
 }
 
 .btn-primary:active,
