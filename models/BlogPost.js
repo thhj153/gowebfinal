@@ -4,19 +4,21 @@ const Schema = mongoose.Schema;
 const BlogPostSchema = new Schema({
   title: String,
   body: String,
-  // username: String,
-  userid: {
+  
+  userid: { // 작성자 정보
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  datePosted: {
+
+  datePosted: { // 글 작성일
     type: Date,
     default: new Date()
   }, 
-  image: String,
-  // 카테고리 별 분류를 위해 삽입한 필드
-  category: {
+
+  image: String, // 글 이미지
+  
+  category: { // 카테고리
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
     required: true

@@ -184,51 +184,6 @@ img::-moz-selection {
     }
 }
 
-/* Category bar fix like Nav bar try. */
-@media only screen and (min-width:992px) {
-    #cateBar {
-        transition: background-color .2s;
-        transform: translate3d(0, 0, 0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden
-    }
-
-    #cateBar.is-fixed {
-        position: fixed;
-        top: -67px;
-        transition: transform .2s;
-        border-bottom: 1px solid #fff;
-        background-color: rgba(255, 255, 255, .9)
-    }
-
-    #cateBar.is-fixed .navbar-brand {
-        color: #212529
-    }
-
-    #cateBar.is-fixed .navbar-brand:focus,
-    #cateBar.is-fixed .navbar-brand:hover {
-        color: #0085a1
-    }
-
-    #cateBar.is-fixed .navbar-nav>li.nav-item>a {
-        color: #212529
-    }
-
-    #cateBar.is-fixed .navbar-nav>li.nav-item>a:focus,
-    #cateBar.is-fixed .navbar-nav>li.nav-item>a:hover {
-        color: #0085a1
-    }
-
-    #cateBar.is-visible {
-        transform: translate3d(0, 100%, 0)
-    }
-
-    #cateBar.is-visible {
-        transform: translate3d(0, 100%, 0)
-    }
-}
-/* Category bar fix like Nav bar try. */
-
 header.masthead {
     margin-bottom: 0px;
     background: no-repeat center center;
