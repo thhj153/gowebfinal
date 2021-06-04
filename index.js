@@ -19,8 +19,7 @@ const storePostController = require("./controllers/M_storePost");
 const storeCategoryController = require("./controllers/M_storeCategory");
 const storeUserController = require("./controllers/M_storeUser");
 const updateUserController = require("./controllers/M_updateUserList");
-const modifyPostController = require("./controllers/R_modifyPost");
-const updatePostController = require("./controllers/M_updatePost");
+
 //delete category
 const deleteCategoryController = require("./controllers/M_deleteCategory");
 
@@ -74,11 +73,10 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/post/store", validateMiddleware, storePostController);
+app.use("/posts/store", validateMiddleware, storePostController);
 
-app.get("/post/new", authMiddleware, newPostController);
-app.get("/post/modify", authMiddleware, modifyPostController);
-app.post("/post/update", validateMiddleware, updatePostController);
+app.get("/posts/new", authMiddleware, newPostController);
+
 app.get("/", homeController);
 
 app.get("/layouts/categorybar", categoryBarController);
@@ -106,7 +104,11 @@ app.post("/categories/delete", adminMiddleware, deleteCategoryController);
 
 //카테고리 별 포스트 페이지
 const getPostListController = require('./controllers/R_getPostList');
+<<<<<<< HEAD
 app.get('/postlist/:id', authMiddleware, getPostListController);
+=======
+app.get('/postlist', authMiddleware, getPostListController);
+>>>>>>> parent of 115e74b (modify클릭시 수정창 띄우기)
 
 app.post(
   "/users/register",
