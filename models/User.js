@@ -14,11 +14,11 @@ const UserSchema = new Schema({
   },
   grade: {
     type: String,
-    require: true,
+    required: true,
   },
   admin: {
     type: Boolean,
-    require: true,
+    required: true,
   },
 });
 

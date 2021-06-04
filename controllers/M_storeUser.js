@@ -7,7 +7,7 @@ module.exports = (req, res) => {
     admin: false,
   } , (error, user) => {
     if (error) {
-      console.log("create error!");
+      console.log("create error!" + error);
       return res.redirect("/auth/register");
     }
     res.redirect("/");
