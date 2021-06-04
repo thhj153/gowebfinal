@@ -4,9 +4,8 @@ const Category = require("../models/Category.js");
 module.exports = async (req, res) => {
   let postID = req.params.id;
 
-  const blogposts = await BlogPost.find({ _id: postID }).populate("category");
-  const categoryID = blogposts[0].category._id;
-  console.log(blogposts[0].category._id);
+  const blogpost = await BlogPost.findById(postID).populate("category");
+  const categoryID = blogpost.category._id;
   const userInfo = req.session.User;
 
   const cat = await Category.findById(categoryID);
@@ -21,10 +20,10 @@ module.exports = async (req, res) => {
    *
    * 작동할지 안할지 잘 모르겠네요.
    */
-  res.render("postList", {
+  res.render("post", {
     catName,
     userInfo,
-    blogposts,
+    blogpost,
     categories,
   });
 };
