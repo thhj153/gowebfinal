@@ -43,12 +43,12 @@
     </button>
     
     <div class="collapse navbar-collapse" id="listBarResponsive">
-      <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center;">
+      <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center; ">
         <% for (var i=0; i < categories.length; i++) { %>
           <li class="containers" style="font-family:'Times New Roman', Times, serif; 
           font-size: 16px; padding-top: 10px; height: 75px;">
-                <a href="/<%= categories[i]._id %>">
-                  <div style="text-align: center; margin: 0 auto;"> 
+                <a href= "/postlist/<%= categories[i]._id %>">
+                  <div style="text-align:initial; margin: 0 auto;"> 
                   <span class="maintext">
                   
                   <% if (categories[i].name.length>= 12) { %>
