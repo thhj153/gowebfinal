@@ -2,7 +2,7 @@ const BlogPost = require("../models/BlogPost.js");
 const Category = require("../models/Category.js");
 
 module.exports = async (req, res) => {
-  console.log(req);
+  console.log(req.body);
   const categories = await Category.find({});
   const blogpost = await BlogPost.find({});
   // if session contains user id
