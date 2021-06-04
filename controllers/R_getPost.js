@@ -8,42 +8,10 @@ module.exports = async (req, res) => {
   const categories = await Category.find({});
   // console.log(blogpost)
   if (userInfo) {
-    switch (blogpost.grade) {
-      case GRADE.DAKDULGI:
-        if (userInfo.grade === GRADE.DAKDULGI) {
-          res.render("post", {
-            userInfo,
-            blogpost,
-            categories,
-          });
-        } else {
-          res.redirect("/notfound");
-        }
-        break;
-      case GRADE.GINDGI:
-        if (
-          userInfo.grade === GRADE.GINDGI ||
-          userInfo.grade === GRADE.DAKDULGI
-        ) {
-          res.render("post", {
-            userInfo,
-            blogpost,
-            categories,
-          });
-        } else {
-          res.redirect("/notfound");
-        }
-        break;
-      case GRADE.AMEBA:
-        res.render("post", {
-          userInfo,
-          blogpost,
-          categories,
-        });
-        break;
-      default:
-        break;
-    }
+    res.render("post", {
+      userInfo,
+      categories,
+    });
   } else {
     res.redirect("/auth/login");
   }

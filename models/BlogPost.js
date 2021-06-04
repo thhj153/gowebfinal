@@ -15,10 +15,6 @@ const BlogPostSchema = new Schema({
     default: new Date(),
   },
   image: String,
-  grade: {
-    type: String,
-    required: true,
-  },
 });
 
 const BlogPost = mongoose.model("BlogPost", BlogPostSchema);
