@@ -104,7 +104,7 @@ app.post("/categories/delete", adminMiddleware, deleteCategoryController);
 
 //카테고리 별 포스트 페이지
 const getPostListController = require('./controllers/R_getPostList');
-app.get('/postlist', authMiddleware, getPostListController);
+app.get('/postlist/:id', authMiddleware, getPostListController);
 
 app.post(
   "/users/register",
