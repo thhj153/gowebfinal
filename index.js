@@ -19,7 +19,8 @@ const storePostController = require("./controllers/M_storePost");
 const storeCategoryController = require("./controllers/M_storeCategory");
 const storeUserController = require("./controllers/M_storeUser");
 const updateUserController = require("./controllers/M_updateUserList");
-
+const modifyPostController = require("./controllers/R_modifyPost");
+const updatePostController = require("./controllers/M_updatePost");
 //delete category
 const deleteCategoryController = require("./controllers/M_deleteCategory");
 
@@ -73,10 +74,11 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/posts/store", validateMiddleware, storePostController);
+app.use("/post/store", validateMiddleware, storePostController);
 
-app.get("/posts/new", authMiddleware, newPostController);
-
+app.get("/post/new", authMiddleware, newPostController);
+app.get("/post/modify", authMiddleware, modifyPostController);
+app.post("/post/update", validateMiddleware, updatePostController);
 app.get("/", homeController);
 
 app.get("/layouts/categorybar", categoryBarController);
@@ -103,8 +105,13 @@ app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/categories/delete", adminMiddleware, deleteCategoryController);
 
 //카테고리 별 포스트 페이지
+<<<<<<< HEAD
 const getPostListController = require('./controllers/R_getPostList');
 app.get('/postlist/:id', authMiddleware, getPostListController);
+=======
+const getPostListController = require("./controllers/R_getPostList");
+app.get("/postlist", authMiddleware, getPostListController);
+>>>>>>> main
 
 app.post(
   "/users/register",
