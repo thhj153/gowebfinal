@@ -10,16 +10,19 @@ module.exports = async (req, res) => {
   if (userInfo) {
     switch (blogpost.grade) {
       case GRADE.DAKDULGI:
+
         if (userInfo.grade === GRADE.DAKDULGI) {
           res.render("post", {
             userInfo,
             blogpost,
             categories,
           });
+
         } else {
           res.redirect("/notfound");
         }
         break;
+
       case GRADE.GINDGI:
         if (
           userInfo.grade === GRADE.GINDGI ||
@@ -34,6 +37,7 @@ module.exports = async (req, res) => {
           res.redirect("/notfound");
         }
         break;
+        
       case GRADE.AMEBA:
         res.render("post", {
           userInfo,
@@ -44,6 +48,7 @@ module.exports = async (req, res) => {
       default:
         break;
     }
+
   } else {
     res.redirect("/auth/login");
   }
