@@ -7,7 +7,6 @@ module.exports = (req, res) => {
   image.mv(
     path.resolve(__dirname, "..", "public/img", image.name),
     async (error) => {
-      console.log(req.body.notice);
       // let noticeCheck = false;
       // if (req.body.notice === "on") {
       //   noticeCheck = true;
