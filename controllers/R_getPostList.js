@@ -3,13 +3,15 @@ const Category = require("../models/Category.js")
 
 module.exports = async (req,res) =>{
     let categoryID = req.params.id;
-  
-    const blogpost =  await BlogPost.find({'category' : categoryID});
+
+    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category');
     const userInfo = req.session.User;
-    const categories = await Category.find({});
+    
     const cat = await Category.findById(categoryID);
     console.log(cat);
-    const catName = await Category.findById(categoryID).name;
+    const catName = cat.name;
+
+    const categories = await Category.find({});
     // console.log(blogpost)
     /**
      * category 별로 포스트를 모아 보여주는 화면이 필요.
@@ -18,9 +20,9 @@ module.exports = async (req,res) =>{
      * 작동할지 안할지 잘 모르겠네요.
      */
     res.render('postList', {
+        catName,
         userInfo,
-        blogpost,
-        categories,
-        catName
+        blogposts,
+        categories
     })
 }
