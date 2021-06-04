@@ -11,8 +11,8 @@
         <% for (var i=0; i < categories.length; i++) { %> 
          
         <li class="nav-item">
-          <a class="nav-link" href="/<%= categories[i]._id %>">
-            <%=categories[i].name%>
+          <a class="nav-link" href="/postlist/<%= categories[i]._id %>">
+            <%=categories[i].name%><%=categories[i].grade %>
           </a>
         </li>
         <% } %>
