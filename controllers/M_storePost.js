@@ -3,16 +3,22 @@ const path = require("path");
 
 module.exports = (req, res) => {
   let image = req.files.image;
+  
 
-  const userGrade = req.session.User.grade;
   image.mv(
     path.resolve(__dirname, "..", "public/img", image.name),
     async (error) => {
+      console.log(req.body.notice);
+      let noticeCheck = false
+      if(req.body.notice==='on'){
+        noticeCheck = true
+      }
       await BlogPost.create({
         ...req.body,
         image: "/img/" + image.name,
         userid: req.session.userId,
-        grade: userGrade,
+        category:req.body.category,
+        notice:noticeCheck
       });
       res.redirect("/");
     }

@@ -103,12 +103,8 @@ app.post("/categories/store", adminMiddleware, storeCategoryController);
 app.post("/categories/delete", adminMiddleware, deleteCategoryController);
 
 //카테고리 별 포스트 페이지
-const getPostListController = require('./controllers/R_getPostList');
-<<<<<<< HEAD
-app.get('/postlist/:id', authMiddleware, getPostListController);
-=======
-app.get('/postlist', authMiddleware, getPostListController);
->>>>>>> parent of 115e74b (modify클릭시 수정창 띄우기)
+const getPostListController = require("./controllers/R_getPostList");
+app.get("/postlist/:id", authMiddleware, getPostListController);
 
 app.post(
   "/users/register",
