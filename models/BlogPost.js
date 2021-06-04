@@ -4,13 +4,14 @@ const Schema = mongoose.Schema;
 const BlogPostSchema = new Schema({
   title: String,
   body: String,
-  // username: String,
-  userid: {
+  
+  userid: { // 작성자 정보
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  datePosted: {
+
+  datePosted: { // 글 작성일
     type: Date,
     default: new Date(),
   },
