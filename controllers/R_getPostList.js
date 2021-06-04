@@ -2,14 +2,14 @@ const BlogPost = require('../models/BlogPost.js')
 const Category = require("../models/Category.js")
 
 module.exports = async (req,res) =>{
-    let categoryID = "";
-    let hrefData = location.href.split('?');
-    if(hrefData.length > 1) {
-        categoryID += hrefData[1].split('=')[1];
-    }
+    let categoryID = req.params.id;
+  
     const blogpost =  await BlogPost.find({'category' : categoryID});
     const userInfo = req.session.User;
     const categories = await Category.find({});
+    const cat = await Category.findById(categoryID);
+    console.log(cat);
+    const catName = await Category.findById(categoryID).name;
     // console.log(blogpost)
     /**
      * category 별로 포스트를 모아 보여주는 화면이 필요.
@@ -20,6 +20,7 @@ module.exports = async (req,res) =>{
     res.render('postList', {
         userInfo,
         blogpost,
-        categories
+        categories,
+        catName
     })
 }
