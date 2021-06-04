@@ -74,11 +74,11 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/post/store", validateMiddleware, storePostController);
+app.use("/posts/store", validateMiddleware, storePostController);
 
-app.get("/post/new", authMiddleware, newPostController);
-app.get("/post/modify", authMiddleware, modifyPostController);
-app.post("/post/update", validateMiddleware, updatePostController);
+app.get("/posts/new", authMiddleware, newPostController);
+app.get("/posts/modify", authMiddleware, modifyPostController);
+app.post("/posts/update", validateMiddleware, updatePostController);
 
 app.get("/", homeController);
 
