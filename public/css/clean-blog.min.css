@@ -52,6 +52,26 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'RIDSerif';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@media only screen and (max-width: 992px) {
+    #leftCate {
+        display: none !important;
+    }
+}
+
+.alpha {
+    list-style: none;
+}
+
+
 body {
     font-size: 20px;
     color: #212529;
@@ -306,6 +326,7 @@ header.masthead .site-heading .subheading {
     margin: 10px 0 0;
     font-family: 'KOTRA_BOLD-Bold';
     font-weight: lighter;
+    line-height: 160%;
 }
 
 @media only screen and (min-width:768px) {
@@ -367,7 +388,9 @@ header.masthead .post-heading .meta a {
 .post-preview>a>.post-title {
     font-size: 20px;
     margin-top: 10px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    font-style: bold;
+    font-family: 'YESerif';
 }
 
 .post-preview>a>.post-subtitle {

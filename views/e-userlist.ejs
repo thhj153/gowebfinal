@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+    <body>
+        <%- include('layouts/navbar'); -%>
+            <!-- Page Header -->
+            <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            <div class="site-heading">
+                                <h1>Clean Blog</h1>
+                                <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content -->
+
+
+                <form action="/userlist/store" method="POST" enctype="multipart/form-data">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-10 mx-auto">
+                                <% for (var i=0; i < users.length; i++) { %>
+                                    <div class="post-preview">
+                                        <p class="post-meta">
+                                            <!-- id 맵핑을 위한 input field. 이용자기 임의로 수정 불가능하도록 해야함 -->
+                                            <input type='text' name='userList' value='<%= users[i]._id %>' style="display: none;">
+                                            <a href="/admin/<%= users[i]._id %>">
+                                                <%= users[i].username %>
+                                            </a>
+                                            <!-- list mapping. POST로 넘어간 자료의 구조는 확인 필요 -->
+                                            <select name='userList' id="grade">
+                                                <option value="<%= users[i].grade %>">
+                                                    <%= users[i].grade %>
+                                                </option>
+                                                <option value="<%= grade.GINDGI %>">
+                                                    <%= grade.GINDGI %>
+                                                </option>
+                                                <option value="<%= grade.DAKDULGI %>">
+                                                    <%= grade.DAKDULGI %>
+                                                </option>
+                                                <option value="<%= grade.AMEBA %>">
+                                                    <%= grade.AMEBA %>
+                                                </option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <hr />
+                                    <% } %>
+                                        <!-- Pager -->
+                                        <div class="clearfix">
+                                            <button type='submit' class="btn btn-primary float-right" href="#">SAVE
+                                                &rarr;</button>
+                                        </div>
+    </body>
+    <%- include('layouts/footer'); -%>
+        <%- include('layouts/scripts'); -%>
+
+</html>

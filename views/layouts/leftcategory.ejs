@@ -1,0 +1,65 @@
+<style>
+    
+    .containers:hover {
+      background-color: white;
+      border-radius: 10px;
+    }
+    .containers:hover .needtohidden {
+      background-color: navy;
+      text-align: center;
+      display: block;
+      animation: views 0.5s;
+      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding-top: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+      border-radius: 3px;
+    }
+  
+    .needtohidden {
+      display: none;
+    }
+  
+    .maintext {
+      text-align: center;
+      display:table;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    @keyframes views {
+      from { opacity: 0%; }
+      to {opacity: 100%; }
+    }
+
+</style>
+
+<div id="leftCate" style="position: sticky; float: left; margin-left: auto;  
+margin-right: -10px; width: 250px; height: auto; overflow-y: auto; vertical-align: baseline;
+background-color: white; border-right: 1.5px solid #DEE; font-stretch: condensed;"> 
+    <% for (var i=0; i < categories.length; i++) { %>
+        <li class="containers alpha" style="font-family:'RIDSerif'; font-size: 16px;
+         padding-top: 10px; height: auto; font-weight: 500; padding-top: 18px;">
+            <a href= "/postlist/<%= categories[i]._id %>" style="text-decoration: none !important;">
+                <div style="text-align: right !important; margin-left: 10px; margin-bottom: 5px;"> 
+                    <span class="maintext" style="margin-left: 10px">
+                        <% if (categories[i].name.length>= 15) { %>
+                            &#9702; &nbsp;<%=categories[i].name.substring(0, 12) + "…"%>&nbsp; &nbsp;
+                        <% } else { %>
+                            &#9702; &nbsp;<%=categories[i].name%>&nbsp; &nbsp;
+                        <% } %>
+                    </span>
+                </div>
+
+                <span class="needtohidden" style="font-family: 'RIDSerif'; 
+                font-size: 14px; font-weight: normal; text-align: center; font-weight: normal !important;
+                width: fit-content !important; border-right: none; margin-left: 40px;">
+                &nbsp;  &#12304; <%=categories[i].grade%> &#12305; 이상 게시판 &nbsp;
+                </span>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+</div>

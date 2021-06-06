@@ -4,7 +4,43 @@
   .post { height: auto !important;
           width: 100px;
           padding: 8px !important;}
-  </style>
+    
+  .containers:hover {
+    background-color: white !important;
+    border-radius: 10px !important;
+  }
+  .containers:hover .needtohidden {
+    background-color: navy;
+    text-align: center;
+    display: block;
+    animation: views 0.5s;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 3px;
+    }
+  
+  .needtohidden {
+    display: none;
+  }
+  
+  .maintext {
+    text-align: center;
+    display:table;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @keyframes views {
+    from { opacity: 0%; }
+    to {opacity: 100%; }
+  }
+
+</style>
+
 <%- include('layouts/header'); -%>
 
   <body>
@@ -52,6 +88,9 @@
         <article>
           <div class="container">
             <div class="row">
+
+              <%- include('layouts/leftcategory'); -%>
+              
               <div class="col-lg-8 col-md-10 mx-auto" style="font-size: 15px; font-family: 'YESerif'; line-height: 175%;">
                 <%= blogpost.body %>
               </div>
