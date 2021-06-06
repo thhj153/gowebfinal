@@ -5,7 +5,7 @@ module.exports = async (req,res) =>{
 
     let categoryID = req.params.id;
 
-    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category');
+    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category').populate('userid');
     const userInfo = req.session.User;
     
     const cat = await Category.findById(categoryID);
