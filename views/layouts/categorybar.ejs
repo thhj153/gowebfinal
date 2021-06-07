@@ -1,23 +1,22 @@
 <!-- Category Navigation -->
 
 <style>
-    
   .containers:hover {
     background-color: white;
     border-radius: 10px;
   }
-  .containers:hover .needtohidden {
+
+  .explain {
     background-color: white;
     text-align: center;
-    display: block;
-    animation: views 0.5s;
     font-size: 11px;
-    font-family: 'RIDSerif';
+    position: relative;
+    float: right;
+    font-family: 'SAir';
     padding-top: 5px;
     color: navy;
     text-decoration: none;
-    margin-left: 20px;
-    width: fit-content;
+    margin: -20px 175px 0px 0px;
   }
 
   .needtohidden {
@@ -26,60 +25,65 @@
 
   .maintext {
     text-align: center;
-    display:table;
+    display: table;
     margin-left: auto;
     margin-right: auto;
+    width: inherit;
   }
 
   @keyframes views {
-    from { opacity: 0%; }
-    to {opacity: 100%; }
-  }
+    from {
+      opacity: 0%;
+    }
 
+    to {
+      opacity: 100%;
+    }
+  }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light" id="cateBar"
-  style="width: 100%; font-size: 13px;">
+<nav class="navbar navbar-expand-lg navbar-light" id="cateBar" style="width: 100%; font-size: 13px;">
   <div class="container">
 
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-      data-target="#listBarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation" style="margin-bottom: 10px;">
-      Category
-      <i class="fas fa-bars"></i>
+    <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#listBarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="margin: -40px auto 10px auto;
+      font-family: 'SAir'; font-size: 15px; font-weight: bold; padding-left: 20px; padding-right: 20px; line-height: 70%;">
+      게시판 목록
+
     </button>
-    
+
     <div class="collapse navbar-collapse" id="listBarResponsive">
       <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center; margin-right: auto !important;">
 
-        </li>
         <% for (var i=0; i < categories.length; i++) { %>
-          <li class="containers" style="font-family:'SAir'; font-weight: bolder;
-          font-size: 13px; padding-top: 10px; height: 75px; min-width: 75px;">
-                <a href= "/postlist/<%= categories[i]._id %>" style="text-decoration: none !important;">
-                  <div style="text-align:initial; margin: 0 auto;"> 
-                  <span class="maintext">
-                  
-                  <% if (categories[i].name.length>= 12) { %>
-                    &nbsp; &nbsp;<%=categories[i].name.substring(0, 10) + "…"%>&nbsp; &nbsp;
-                  <% } else { %>
-                    &nbsp; &nbsp;<%=categories[i].name%>&nbsp; &nbsp;
-                  <% } %>
+          <li class="containers alpha" style="font-family:'SAir'; font-size: 13px;
+            padding-top: 10px; padding-bottom: 8px; height: auto; font-weight: 500;">
+
+            <a href="/postlist/<%= categories[i]._id %>" style="text-decoration: none !important;">
+              <div style="margin-left: 10px;">
+                <span class="maintext" style="margin-left: 150px; text-align: right !important;">
+                  <% if (categories[i].name.length>= 15) { %>
+                    &#9702; &nbsp;<%=categories[i].name.substring(0, 12) + "…" %>&nbsp; &nbsp;
+                      <% } else { %>
+                        &#9702; &nbsp;<%=categories[i].name%>&nbsp; &nbsp;
+                          <% } %>
                 </span>
-                </div>
-            
-            <span class="needtohidden" style="font-family: 'SAir'; font-size: 11px; font-weight: normal; text-align: center;
-             width: auto !important; margin-left: 10px !important; margin-right: 10px;">
-              <!-- <% if (categories[i].name.length>= 12) { %> -->
-                <!-- &nbsp; <%=categories[i].name%> &nbsp;</br> -->
-              <!-- <% } %> -->
-              &nbsp;  &#12304; <%=categories[i].grade%> &#12305; 이상 게시판 &nbsp;</span>
+                <span class="explain">
+                  &nbsp; &#12304; <%=categories[i].grade%> &#12305; 이상 게시판 &nbsp;</span>
+
+
+
+              </div>
+
+
+
             </a>
           </li>
-
-        <% } %>  
-
-        </li>
+          <% } %>
+      </ul>
+      <ul class="navbar-nav ml-auto" style="border: 1px; text-align: center; margin-right: auto !important;">
+        <li class="containers alpha" style="font-family:'SAir'; font-size: 13px;
+        padding-top: 10px; height: auto; font-weight: 500; padding-top: 18px;">
       </ul>
     </div>
   </div>

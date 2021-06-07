@@ -21,7 +21,6 @@ const storeUserController = require("./controllers/M_storeUser");
 const updateUserController = require("./controllers/M_updateUserList");
 const modifyPostController = require("./controllers/R_modifyPost");
 const updatePostController = require("./controllers/M_updatePost");
-//delete category
 const deleteCategoryController = require("./controllers/M_deleteCategory");
 
 const adminMiddleware = require("./middleware/adminMiddleware");
