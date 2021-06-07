@@ -56,11 +56,16 @@
                                             <% } %>
                                             >&nbsp;   <%= grade.AMEBA %> &nbsp; &nbsp; &nbsp;
 
+<<<<<<< HEAD
                                             
 
                                             <input 
                                                 type="radio" id="<%= grade.GINDGI %>"
                                                 name="e[<%= i %>].grade" value="<%= grade.GINDGI %>"
+=======
+                                            <input type="radio" id="<%= grade.GINDGI %>"
+                                            name=<%= users[i]._id %>
+>>>>>>> main
                                             <% if (users[i].grade === grade.GINDGI ) {%>
                                                 checked
                                             <% } %>
