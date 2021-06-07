@@ -70,6 +70,7 @@ app.use("*", (req, res, next) => {
   loggedIn = req.session.userId;
   admin = req.session.admin;
   grade = req.session.grade;
+  selectedPost = req.session.selectedPost;
   // console.log(grade);
   next();
 });
