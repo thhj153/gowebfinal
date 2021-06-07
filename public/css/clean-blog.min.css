@@ -182,13 +182,13 @@ img::-moz-selection {
 }
 
 #cateBar .navbar-brand {
-    font-family: 'BMJUA';
+    font-family: 'Sur';
     font-size: 24px;
     color: #343a40
 }
 
 #cateBar .navbar-toggler {
-    font-family: 'BMJUA';
+    font-family: 'Sur';
     font-size: 16px;
     padding: 13px;
     text-transform: uppercase;
