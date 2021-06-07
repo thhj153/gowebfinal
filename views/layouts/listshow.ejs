@@ -4,7 +4,7 @@
         <%- include('leftcategory'); -%>
         
         <div class="col-lg-8 col-md-10 mx-auto">
-            <% for (var i=0; i < blogposts.length; i++) { %>
+            <% for (var i=blogposts.length-1; i >= 0; i--) { %>
             <div class="post-preview">
                 <a href="/post/<%= blogposts[i]._id %>">
                     <h2 class="post-title"> <%= blogposts[i].title %> </h2>
@@ -15,9 +15,9 @@
                     <% if (blogposts[i].datePosted.getMonth()+1 < 10 ) {%>
                     <% m = '0'+String( blogposts[i].datePosted.getMonth()+1 )%>
                     <% } else { m = blogposts[i].datePosted.getMonth()+1 } %>
-                    <% if (blogposts[i].datePosted.getDay() < 10 ) { %>
-                    <% d = '0'+String( blogposts[i].datePosted.getDay() )%>
-                    <% } else { d = blogposts[i].datePosted.getDay() } %>
+                    <% if (blogposts[i].datePosted.getDate() < 10 ) { %>
+                    <% d = '0'+String( blogposts[i].datePosted.getDate() )%>
+                    <% } else { d = blogposts[i].datePosted.getDate() } %>
 
                 <p class="post-meta">
                 By: <a href="#"><%= blogposts[i].userid.username %></a> </br>

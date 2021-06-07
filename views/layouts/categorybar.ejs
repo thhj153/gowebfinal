@@ -1,21 +1,23 @@
 <!-- Category Navigation -->
+
 <style>
+    
   .containers:hover {
-    background-color: aliceblue;
+    background-color: white;
     border-radius: 10px;
   }
   .containers:hover .needtohidden {
-    background-color: navy;
+    background-color: white;
     text-align: center;
     display: block;
     animation: views 0.5s;
-    font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 10px;
-    color: white;
+    font-size: 11px;
+    font-family: 'RIDSerif';
+    padding-top: 5px;
+    color: navy;
     text-decoration: none;
-    padding: 5px;
-    border-radius: 3px;
+    margin-left: 20px;
+    width: fit-content;
   }
 
   .needtohidden {
@@ -32,7 +34,8 @@
   @keyframes views {
     from { opacity: 0%; }
     to {opacity: 100%; }
-}
+  }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light" id="cateBar"
@@ -51,8 +54,8 @@
 
         </li>
         <% for (var i=0; i < categories.length; i++) { %>
-          <li class="containers" style="font-family:'BMJUA'; 
-          font-size: 16px; padding-top: 10px; height: 75px; min-width: 75px;">
+          <li class="containers" style="font-family:'SAir'; font-weight: bolder;
+          font-size: 13px; padding-top: 10px; height: 75px; min-width: 75px;">
                 <a href= "/postlist/<%= categories[i]._id %>" style="text-decoration: none !important;">
                   <div style="text-align:initial; margin: 0 auto;"> 
                   <span class="maintext">
@@ -65,12 +68,12 @@
                 </span>
                 </div>
             
-            <span class="needtohidden" style="font-family: 'SAir'; font-size: 14px; font-weight: normal; text-align: center;
+            <span class="needtohidden" style="font-family: 'SAir'; font-size: 11px; font-weight: normal; text-align: center;
              width: auto !important; margin-left: 10px !important; margin-right: 10px;">
               <!-- <% if (categories[i].name.length>= 12) { %> -->
                 <!-- &nbsp; <%=categories[i].name%> &nbsp;</br> -->
               <!-- <% } %> -->
-              &nbsp;  '<%=categories[i].grade%>' 이상 게시판 &nbsp;</span>
+              &nbsp;  &#12304; <%=categories[i].grade%> &#12305; 이상 게시판 &nbsp;</span>
             </a>
           </li>
 
