@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({
-  title: String,
+  title: { type: String, required: true },
   body: [String],
-  
-  userid: { // 작성자 정보
+
+  userid: {
+    // 작성자 정보
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
