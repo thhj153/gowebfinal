@@ -3,8 +3,8 @@ const path = require("path");
 
 module.exports = (req, res) => {
   let image = req.files != null ? req.files.image : null;
-  let body = req.body
-  if(image != null) {
+  let body = req.body;
+  if (image != null) {
     image.mv(
       path.resolve(__dirname, "..", "public/img", image.name),
       async (error) => {
@@ -16,7 +16,7 @@ module.exports = (req, res) => {
         await BlogPost.create({
           title: req.body.title,
           image: "/img/" + image.name,
-          body: req.body.body.split('\r\n').filter(Boolean),
+          body: req.body.body.split("\r\n").filter(Boolean),
           userid: req.session.userId,
           category: req.body.category,
           notice: noticeCheck,
@@ -33,12 +33,11 @@ module.exports = (req, res) => {
 
     BlogPost.create({
       title: req.body.title,
-      body: req.body.body.split('\r\n').filter(Boolean),
+      body: req.body.body.split("\r\n"),
       userid: req.session.userId,
       category: req.body.category,
       notice: noticeCheck,
     });
-    console.log(req.body.body.split('\r\n').filter(Boolean));
     res.redirect("/");
   }
 };

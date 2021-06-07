@@ -60,8 +60,10 @@
             </div>
             <div class="container" style="position: relative; width:max-content;">
             </br>
+            <% if (blogpost.userid==userInfo._id.toString()){ %>
               <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
               <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
+              <% } %>
             </div>
             </div>
           </div>

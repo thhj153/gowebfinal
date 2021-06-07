@@ -22,7 +22,7 @@ const updateUserController = require("./controllers/M_updateUserList");
 const modifyPostController = require("./controllers/R_modifyPost");
 const updatePostController = require("./controllers/M_updatePost");
 const deleteCategoryController = require("./controllers/M_deleteCategory");
-
+const deletePostController = require("./controllers/M_deletePost");
 const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
 
@@ -104,7 +104,7 @@ app.post("/categories/store", adminMiddleware, storeCategoryController);
 
 // 카테고리 삭제를 위한 가상 페이지
 app.post("/categories/delete", adminMiddleware, deleteCategoryController);
-
+app.get("/posts/delete", authMiddleware, deletePostController);
 //카테고리 별 포스트 페이지
 const getPostListController = require("./controllers/R_getPostList");
 app.get("/postlist/:id", authMiddleware, getPostListController);
