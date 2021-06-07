@@ -42,7 +42,6 @@
                                                     value="<%= users[i]._id %>"
                                                     hidden
                                                 >
-                                                <label name="<%= users[i].grade %>" hidden></label>
                                                 <a class="t" href="/admin/<%= users[i]._id %>">
                                                     <%= users[i].username %>
                                                 </a>
@@ -56,16 +55,11 @@
                                             <% } %>
                                             >&nbsp;   <%= grade.AMEBA %> &nbsp; &nbsp; &nbsp;
 
-<<<<<<< HEAD
                                             
 
                                             <input 
                                                 type="radio" id="<%= grade.GINDGI %>"
                                                 name="e[<%= i %>].grade" value="<%= grade.GINDGI %>"
-=======
-                                            <input type="radio" id="<%= grade.GINDGI %>"
-                                            name=<%= users[i]._id %>
->>>>>>> main
                                             <% if (users[i].grade === grade.GINDGI ) {%>
                                                 checked
                                             <% } %>
