@@ -27,7 +27,7 @@
 
 
                 <form action="/userlist/store" method="POST" enctype="multipart/form-data">
-
+                    <input type="number" value='<%=users.length %>' name=length hidden>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 col-md-10 mx-auto">
@@ -37,31 +37,39 @@
 
                                             <span style="display: inline-block; width: 250px;">
                                                 &nbsp; &nbsp; &nbsp;
+                                                <input
+                                                    name="e[<%= i %>].id"
+                                                    value="<%= users[i]._id %>"
+                                                    hidden
+                                                >
+                                                <label name="<%= users[i].grade %>" hidden></label>
                                                 <a class="t" href="/admin/<%= users[i]._id %>">
                                                     <%= users[i].username %>
                                                 </a>
                                             </span>
                                             
-                                            <input type="radio" id="<%= grade.AMEBA %>"
-                                            name=<%= users[i]._id %> 
+                                            <input 
+                                                type="radio" id="<%= grade.AMEBA %>" 
+                                                name="e[<%= i %>].grade" value="<%= grade.AMEBA %>" 
                                             <% if (users[i].grade === grade.AMEBA ) {%>
-                                                <%="checked"%>
+                                                checked
                                             <% } %>
                                             >&nbsp;   <%= grade.AMEBA %> &nbsp; &nbsp; &nbsp;
 
                                             
 
-                                            <input type="radio" id="<%= grade.GINDGI %>"
-                                            name=<%= users[i]._id %>
+                                            <input 
+                                                type="radio" id="<%= grade.GINDGI %>"
+                                                name="e[<%= i %>].grade" value="<%= grade.GINDGI %>"
                                             <% if (users[i].grade === grade.GINDGI ) {%>
-                                                <%="checked"%>
+                                                checked
                                             <% } %>
                                             >&nbsp;   <%= grade.GINDGI %> &nbsp; &nbsp; &nbsp;
 
                                             <input type="radio" id="<%= grade.DAKDULGI %>"
-                                            name=<%= users[i]._id %>
+                                            name="e[<%= i %>].grade" value="<%= grade.DAKDULGI %>"
                                             <% if (users[i].grade === grade.DAKDULGI ) {%>
-                                                <%="checked"%>
+                                                checked
                                             <% } %>
                                             >&nbsp;   <%= grade.DAKDULGI %> &nbsp; &nbsp; &nbsp;
 
