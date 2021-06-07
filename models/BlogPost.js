@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const BlogPostSchema = new Schema({
   title: String,
-  body: String,
+  body: [String],
   
   userid: { // 작성자 정보
     type: mongoose.Schema.Types.ObjectId,
