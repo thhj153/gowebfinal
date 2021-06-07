@@ -15,8 +15,9 @@ module.exports = async (req, res) => {
         await BlogPost.updateOne(
           { _id: selectedPost._id },
           {
-            ...req.body,
+            title: req.body.title,
             image: "/img/" + image.name,
+            body: req.body.body.split("\r\n").filter(Boolean),
             userid: req.session.userId,
             category: req.body.category,
             notice: noticeCheck,
@@ -32,7 +33,8 @@ module.exports = async (req, res) => {
     await BlogPost.updateOne(
       { _id: selectedPost._id },
       {
-        ...req.body,
+        title: req.body.title,
+        body: req.body.body.split("\r\n").filter(Boolean),
         userid: req.session.userId,
         category: req.body.category,
         notice: noticeCheck,

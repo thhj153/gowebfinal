@@ -49,7 +49,9 @@
               <div class="form-group floating-label-form-group controls">
                 <label>Description</label>
                 <textarea rows="5" class="form-control" id="body" name="body">
-<%=blogpost.body %></textarea
+<% for (var i=0; i < blogpost.body.length; i++){%><%=blogpost.body[i]%>
+<%} %>
+</textarea
                 >
               </div>
             </div>
