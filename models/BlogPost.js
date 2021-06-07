@@ -11,7 +11,8 @@ const BlogPostSchema = new Schema({
     required: true,
   },
 
-  datePosted: { // 글 작성일
+  datePosted: {
+    // 글 작성일
     type: Date,
     default: new Date(),
   },
@@ -22,10 +23,10 @@ const BlogPostSchema = new Schema({
     ref: "Category",
     required: true,
   },
-  notice:{
+  notice: {
     type: Boolean,
-    require: true
-  }
+    require: true,
+  },
 });
 
 const BlogPost = mongoose.model("BlogPost", BlogPostSchema);

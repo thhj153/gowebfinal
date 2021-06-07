@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>New Post</h1>
+              <h1>Modify Post</h1>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
           <form
-            action="/posts/store"
+            action="/posts/update"
             method="POST"
             enctype="multipart/form-data"
           >
@@ -41,32 +41,49 @@
                   placeholder="Title"
                   id="title"
                   name="title"
-                  value=""
+                  value="<%=blogpost.title %>"
                 />
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Description</label>
-                <textarea
-                  rows="5"
-                  class="form-control"
-                  id="body"
-                  name="body"
-                ></textarea>
+                <textarea rows="5" class="form-control" id="body" name="body">
+<%=blogpost.body %></textarea
+                >
               </div>
             </div>
-            <% if(admin){ %>
-            <input type="checkbox" name="notice" id="notice" />공지사항 <% } %>
+            <% if(admin){ %> <% if(blogpost.notice){%>
+            <input type="checkbox" name="notice" id="notice" checked />
+            <% }else{ %>
+            <input type="checkbox" name="notice" id="notice" unchecked />
+            <% } %> 공지사항 <% } %>
             <select name="category" id="category">
-              <% for (var i=0; i < categories.length; i++) { %>
+              <% for (var i=0; i < categories.length; i++) { %> <%
+              if(blogpost.category._id == categories[i]._id.toString()) {%>
+              <option value="<%= blogpost.category._id %>" selected="selected">
+                <%= categories[i].name %>
+              </option>
+              <% }else{ %>
+
               <option value="<%= categories[i]._id%>">
                 <%=categories[i].name%>
               </option>
-              <% } %>
+              <% } %> <% } %>
             </select>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
+                <% if(blogpost.image){ %>
+                <div
+                  alt="image"
+                  style="
+                    width: 500px;
+                    height: 500px;
+                    background: url(<%=blogpost.image%>) no-repeat;
+                  "
+                ></div>
+                <% } %> 기존이미지를 보여주고 바꾸려면 파일선택을 하고
+                안바꾸려면 그냥 update버튼을 누르도록
                 <label>Image</label>
                 <input
                   type="file"
@@ -83,7 +100,7 @@
                 class="btn btn-primary"
                 id="sendMessageButton"
               >
-                Send
+                UPDATE
               </button>
             </div>
           </form>
