@@ -4,14 +4,16 @@ const Schema = mongoose.Schema;
 const BlogPostSchema = new Schema({
   title: String,
   body: String,
-  
-  userid: { // 작성자 정보
+
+  userid: {
+    // 작성자 정보
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
 
-  datePosted: { // 글 작성일
+  datePosted: {
+    // 글 작성일
     type: Date,
     default: new Date(),
   },
@@ -22,10 +24,10 @@ const BlogPostSchema = new Schema({
     ref: "Category",
     required: true,
   },
-  notice:{
+  notice: {
     type: Boolean,
-    require: true
-  }
+    require: true,
+  },
 });
 
 const BlogPost = mongoose.model("BlogPost", BlogPostSchema);

@@ -28,7 +28,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
           <form
-            action="/posts/store"
+            action="/posts/update"
             method="POST"
             enctype="multipart/form-data"
           >
@@ -73,6 +73,17 @@
             </select>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
+                <% if(blogpost.image){ %>
+                <div
+                  alt="image"
+                  style="
+                    width: 500px;
+                    height: 500px;
+                    background: url(<%=blogpost.image%>) no-repeat;
+                  "
+                ></div>
+                <% } %> 기존이미지를 보여주고 바꾸려면 파일선택을 하고
+                안바꾸려면 그냥 update버튼을 누르도록
                 <label>Image</label>
                 <input
                   type="file"
@@ -89,7 +100,7 @@
                 class="btn btn-primary"
                 id="sendMessageButton"
               >
-                Send
+                UPDATE
               </button>
             </div>
           </form>
