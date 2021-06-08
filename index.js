@@ -23,6 +23,7 @@ const modifyPostController = require("./controllers/R_modifyPost");
 const updatePostController = require("./controllers/M_updatePost");
 const deleteCategoryController = require("./controllers/M_deleteCategory");
 const deletePostController = require("./controllers/M_deletePost");
+const deleteCommentController = require("./controllers/M_deleteComment");
 const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
 const storeCommentController = require("./controllers/M_storeComment");
@@ -70,6 +71,7 @@ app.use("*", (req, res, next) => {
   admin = req.session.admin;
   grade = req.session.grade;
   selectedPost = req.session.selectedPost;
+  selectedComment = req.session.selectedComment;
   // console.log(grade);
   next();
 });
@@ -105,6 +107,7 @@ app.post("/categories/store", adminMiddleware, storeCategoryController);
 // 카테고리 삭제를 위한 가상 페이지
 app.post("/categories/delete", adminMiddleware, deleteCategoryController);
 app.get("/posts/delete", authMiddleware, deletePostController);
+app.get("/posts/commentdelete", authMiddleware, deleteCommentController);
 //카테고리 별 포스트 페이지
 const getPostListController = require("./controllers/R_getPostList");
 app.get("/postlist/:id", authMiddleware, getPostListController);

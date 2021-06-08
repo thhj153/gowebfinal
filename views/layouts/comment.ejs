@@ -25,14 +25,17 @@
                   <% } %>
                 </span>
                 <% if (comments[i].userid._id==userInfo._id.toString()){ %>
+                    <form id='subForm<%= i %>' action="/posts/commentdelete"method="POST">
                 <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
             background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
             font-size: 18px; margin-top: 35px;";>
               삭제
             </button>
-            <a href="/posts/modify" class="btn btn-primary delete float-right"style="font-family: 'YESerif';
+        </form>
+        <form id='subForm<%= i %>' action="/posts/commentmodify" method="POST"></form>
+            <button type="submit" action="/posts/commentmodify" class="btn btn-primary delete float-right"style="font-family: 'YESerif';
             background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
-            font-size: 18px; margin-top: 35px;"; >댓글 수정</a>
+            font-size: 18px; margin-top: 35px;"; >댓글 수정</button>
             <% } %>
         </div>
       </div>
