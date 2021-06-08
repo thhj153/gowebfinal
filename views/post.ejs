@@ -1,45 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style type="text/css">
-  .post { height: auto !important;
-          width: 100px;
-          padding: 8px !important;}
-    
-  .containers:hover {
-    background-color: white !important;
-    border-radius: 10px !important;
-  }
-  .containers:hover .needtohidden {
-    background-color: navy;
-    text-align: center;
-    display: block;
-    animation: views 0.5s;
-    font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-top: 10px;
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    border-radius: 3px;
-    }
-  
-  .needtohidden {
-    display: none;
-  }
-  
-  .maintext {
-    text-align: center;
-    display:table;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  @keyframes views {
-    from { opacity: 0%; }
-    to {opacity: 100%; }
-  }
-
-</style>
 
 <%- include('layouts/header'); -%>
 
@@ -53,11 +13,11 @@
           <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
               <div class="post-heading">
-                <h1>
+                <h2>
                   <%= blogpost.title %>
-                </h1>
+                </h2>
 
-                <span class="meta">Posted by
+                <span class="meta" style="font-size: 17px;">Posted by
                   <a href="#">
                     <%= blogpost.userid.username %>
                   </a>
@@ -69,8 +29,8 @@
                 <span class="meta">
                   <% if (blogpost.body[0].length>= 70) { %>
                     <h2 class="subheading" style="font-size: 18px; line-height: 180%; margin-top: -9px;
-                  font-weight: 100 !important; font-style: oblique !important; font-family: 'KOTRA_BOLD-Bold' !important;">
-                      <%= blogpost.body[0].substring(0, 70) + " ……" %>
+                    font-style: normal !important; font-weight:normal !important;">
+                      <%= blogpost.body[0].substring(0, 100) + " ⋯⋯" %>
                     </h2>
                     <% } else {%>
                       <%- blogpost.body[0] -%>
@@ -91,19 +51,21 @@
 
               <%- include('layouts/leftcategory'); -%>
               
-              <div class="col-lg-8 col-md-10 mx-auto" style="font-size: 14px; font-family: 'YESerif'; line-height: 175%;">
+              <div class="col-lg-8 col-md-10 mx-auto" style="font-size: 14px; font-family: 'YESerif'; line-height: 175%">
                 <% for (var i=0; i < blogpost.body.length; i++) { %>
                   <%= blogpost.body[i] %>
-                  </br>
+                  <div style="height: 16px;"></div>
                 <% } %>
               </div>
             </div>
             <div class="container" style="position: relative; width:max-content;">
             </br>
-            <% if (blogpost.userid==userInfo._id.toString()){ %>
+
+            <%/* if (blogpost.userid==userInfo._id.toString() ){ */%>
               <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
               <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
-              <% } %>
+              <%/* } */%>
+
             </div>
             <%- include('layouts/comment'); -%>
                 <form action="/comment/store" method="POST" enctype="multipart/form-data" style="font-family: 'YESerif'; ">

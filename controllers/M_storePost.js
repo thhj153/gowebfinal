@@ -21,7 +21,6 @@ module.exports = (req, res) => {
           category: req.body.category,
           notice: noticeCheck,
         });
-
         res.redirect("/");
       }
     );
@@ -38,7 +37,6 @@ module.exports = (req, res) => {
       category: req.body.category,
       notice: noticeCheck,
     });
-
     res.redirect("/");
   }
 };
