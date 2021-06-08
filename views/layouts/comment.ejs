@@ -25,7 +25,8 @@
                   <% } %>
                 </span>
                 <% if (comments[i].userid._id==userInfo._id.toString()){ %>
-                    <form id='subForm<%= i %>' action="/posts/commentdelete"method="POST">
+                
+                    <form id='subForm<%= i %>' action="/comment/delete/<%= comments[i]._id %>" method="GET">
                 <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
             background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
             font-size: 18px; margin-top: 35px;";>

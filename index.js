@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
 app.use(fileUpload());
+
 const newPostController = require("./controllers/R_newPost");
 const homeController = require("./controllers/R_home");
 const manageUserController = require("./controllers/R_manageUser");
@@ -29,6 +30,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 const storeCommentController = require("./controllers/M_storeComment");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const validateMiddleware = require("./middleware/validateMiddleware");
+const getPostListController = require("./controllers/R_getPostList");
 
 mongoose.connect(
   "mongodb+srv://pavk:1234@cluster0.jkanj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
@@ -76,41 +78,39 @@ app.use("*", (req, res, next) => {
   next();
 });
 
-app.use("/posts/store", validateMiddleware, storePostController);
-app.post("/comment/store", authMiddleware, storeCommentController);
+//home
+app.get("/", homeController);
 
+//post
+app.get("/post/:id", authMiddleware, getPostController);
+app.use("/posts/store", validateMiddleware, storePostController);
 app.get("/posts/new", authMiddleware, newPostController);
 app.get("/posts/modify", authMiddleware, modifyPostController);
 app.post("/posts/update", validateMiddleware, updatePostController);
-app.get("/", homeController);
+app.get("/posts/delete", authMiddleware, deletePostController);
 
 app.get("/layouts/categorybar", categoryBarController);
 
-app.get("/post/:id", authMiddleware, getPostController);
-
 app.get("/auth/logout", logoutController);
-
 app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
-
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 
+//관리자
 app.get("/admin", adminManageController);
 app.get("/admin/:id", adminManageController);
-
 // 어드민 권한 목록 추가
 app.get("/userlist", adminMiddleware, manageUserController);
 app.post("/userlist/store", adminMiddleware, updateUserController);
 app.get("/categories", adminMiddleware, manageCategoryController);
 app.post("/categories/store", adminMiddleware, storeCategoryController);
-// app.post("/posts/store", authMiddleware, storePostController);
-
-// 카테고리 삭제를 위한 가상 페이지
 app.post("/categories/delete", adminMiddleware, deleteCategoryController);
-app.get("/posts/delete", authMiddleware, deletePostController);
-app.get("/posts/commentdelete", authMiddleware, deleteCommentController);
+
 //카테고리 별 포스트 페이지
-const getPostListController = require("./controllers/R_getPostList");
 app.get("/postlist/:id", authMiddleware, getPostListController);
+
+//댓글 페이지
+app.post("/comment/store", authMiddleware, storeCommentController);
+app.get("/comment/delete/:id", authMiddleware, deleteCommentController);
 
 app.post(
   "/users/register",

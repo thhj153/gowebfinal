@@ -15,6 +15,12 @@ const CommentSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+
+  postid: {
+    type: String,
+    required: true,
+  }
+
 });
 
 const Comment = mongoose.model("Comment", CommentSchema);
