@@ -1,7 +1,7 @@
 const Comment = require("../models/Comment");
 
 module.exports = (req, res) => {
-  console.log(req.params.id);
+  //console.log(req.params.id);
   const { selectedPost } = req.session;
 
   Comment.deleteOne({ _id: req.params.id }, async (err) => {

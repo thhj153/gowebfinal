@@ -21,7 +21,6 @@ module.exports = (req, res) => {
           category: req.body.category,
           notice: noticeCheck,
         });
-        console.log(req.body.body.split('\r\n').filter(Boolean));
         res.redirect("/");
       }
     );

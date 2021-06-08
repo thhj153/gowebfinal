@@ -47,19 +47,15 @@
                                                 </a>
                                             </span>
                                             
-                                            <input 
-                                                type="radio" id="<%= grade.AMEBA %>" 
-                                                name="e[<%= i %>].grade" value="<%= grade.AMEBA %>" 
+                                            <input type="radio" id="<%= grade.AMEBA %>" 
+                                            name="e[<%= i %>].grade" value="<%= grade.AMEBA %>" 
                                             <% if (users[i].grade === grade.AMEBA ) {%>
                                                 checked
                                             <% } %>
                                             >&nbsp;   <%= grade.AMEBA %> &nbsp; &nbsp; &nbsp;
 
-                                            
-
-                                            <input 
-                                                type="radio" id="<%= grade.GINDGI %>"
-                                                name="e[<%= i %>].grade" value="<%= grade.GINDGI %>"
+                                            <input type="radio" id="<%= grade.GINDGI %>"
+                                            name="e[<%= i %>].grade" value="<%= grade.GINDGI %>"
                                             <% if (users[i].grade === grade.GINDGI ) {%>
                                                 checked
                                             <% } %>
