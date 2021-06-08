@@ -31,6 +31,7 @@ const storeCommentController = require("./controllers/M_storeComment");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const validateMiddleware = require("./middleware/validateMiddleware");
 const getPostListController = require("./controllers/R_getPostList");
+const updateCommentController = require("./controllers/M_updateComment");
 
 mongoose.connect(
   "mongodb+srv://pavk:1234@cluster0.jkanj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
@@ -111,6 +112,7 @@ app.get("/postlist/:id", authMiddleware, getPostListController);
 //댓글 페이지
 app.post("/comment/store", authMiddleware, storeCommentController);
 app.get("/comment/delete/:id", authMiddleware, deleteCommentController);
+app.post("/comment/modify/:id", authMiddleware, updateCommentController);
 
 app.post(
   "/users/register",
