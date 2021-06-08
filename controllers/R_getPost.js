@@ -3,10 +3,10 @@ const Category = require("../models/Category.js");
 
 module.exports = async (req, res) => {
   let postID = req.params.id;
-
+  const comments = await Comment.find({postid: postID}).populate("userid");
+  //console.log(comments);
   const blogpost = await BlogPost.findById(postID).populate("category");
   const categoryID = blogpost.category._id;
-  const userInfo = req.session.User;
   req.session.selectedPost = blogpost;
   const cat = await Category.findById(categoryID);
   // console.log(cat);
@@ -22,8 +22,8 @@ module.exports = async (req, res) => {
    */
   res.render("post", {
     catName,
-    userInfo,
     blogpost,
     categories,
+    comments,
   });
 };
