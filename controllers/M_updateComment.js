@@ -3,39 +3,11 @@ const path = require("path");
 
 module.exports = async (req, res) => {
   const { selectedPost } = req.session;
-  let image = req.files ? req.files.image : { name: "" };
-  if (req.files) {
-    image.mv(
-      path.resolve(__dirname, "..", "public/img", image.name),
-      async (error) => {
-        let noticeCheck = false;
-        if (req.body.notice === "on") {
-          noticeCheck = true;
-        }
-        await Comment.updateOne(
-          { _id: selectedPost._id },
-          {
-            body: req.body.body.split("\r\n").filter(Boolean),
-            dateCommented: new Date(),
-          }
-        );
-      }
-    );
-  } else {
-    let noticeCheck = false;
-    if (req.body.notice === "on") {
-      noticeCheck = true;
-    }
-    await Comment.updateOne(
-      { _id: selectedPost._id },
-      {
-        title: req.body.title,
-        body: req.body.body.split("\r\n").filter(Boolean),
-        userid: req.session.userId,
-        category: req.body.category,
-        notice: noticeCheck,
-      }
-    );
-  }
-  res.redirect("/");
+ 
+  await Comment.updateOne( { _id: req.params.id }, {
+      body: req.body.body.split("\r\n").filter(Boolean),
+      dateCommented: new Date(),
+    });
+
+  res.redirect("/post/" + selectedPost._id);
 };
