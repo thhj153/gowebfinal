@@ -25,7 +25,7 @@ const deleteCategoryController = require("./controllers/M_deleteCategory");
 const deletePostController = require("./controllers/M_deletePost");
 const adminMiddleware = require("./middleware/adminMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
-
+const storeCommentController = require("./controllers/M_storeComment");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const validateMiddleware = require("./middleware/validateMiddleware");
 
@@ -75,16 +75,16 @@ app.use("*", (req, res, next) => {
 });
 
 app.use("/posts/store", validateMiddleware, storePostController);
+app.post("/comment/store", authMiddleware, storeCommentController);
 
 app.get("/posts/new", authMiddleware, newPostController);
 app.get("/posts/modify", authMiddleware, modifyPostController);
 app.post("/posts/update", validateMiddleware, updatePostController);
-
 app.get("/", homeController);
 
 app.get("/layouts/categorybar", categoryBarController);
 
-app.get("/post/:id", getPostController);
+app.get("/post/:id", authMiddleware, getPostController);
 
 app.get("/auth/logout", logoutController);
 

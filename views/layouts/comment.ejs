@@ -1,0 +1,41 @@
+<% for(let i = 0; i < comments.length; i++) { %>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+
+          <span class="meta">Posted by
+            <a href="#">
+              <%= comments[i].userid.username %>
+            </a>
+            on <%= comments[i].dateCommented.toDateString() %>
+              <hr style="border-color: aliceblue;">
+              </hr>
+          </span>
+
+          <span class="meta">
+            <% if (comments[i].body.length>= 70) { %>
+              <h2 class="subheading" style="font-size: 18px; line-height: 180%; margin-top: -9px;
+            font-weight: 100 !important; font-style: oblique !important; font-family: 'KOTRA_BOLD-Bold' !important;">
+                <%= comments[i].body.substring(0, 70) + " ……" %>
+              </h2>
+              <% } else {%>
+                <%- comments[i].body -%>
+                  <% } %>
+                </span>
+                <% if (comments[i].userid._id==userInfo._id.toString()){ %>
+                <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
+            background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
+            font-size: 18px; margin-top: 35px;";>
+              삭제
+            </button>
+            <a href="/posts/modify" class="btn btn-primary delete float-right"style="font-family: 'YESerif';
+            background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
+            font-size: 18px; margin-top: 35px;"; >댓글 수정</a>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
