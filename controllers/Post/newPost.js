@@ -1,6 +1,5 @@
 
-const Category = require("../models/Category.js");
-
+const Category = require("../../models/Category");
 
 module.exports = async(req, res) =>{
   const categories = await Category.find({});
@@ -10,5 +9,5 @@ module.exports = async(req, res) =>{
       categories
     });
   }
-  res.redirect('/auth/login')
+  res.redirect('/user/auth/login')
 }

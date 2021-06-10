@@ -1,4 +1,4 @@
-const User = require("../models/User.js");
+const User = require("../../models/User");
 
 module.exports = (req, res) => {
   User.create({
@@ -8,7 +8,7 @@ module.exports = (req, res) => {
   } , (error, user) => {
     if (error) {
       console.log("create error!" + error);
-      return res.redirect("/auth/register");
+      return res.redirect("/user/auth/register");
     }
     res.redirect("/");
   });

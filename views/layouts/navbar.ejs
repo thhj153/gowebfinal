@@ -24,31 +24,26 @@
           <a class="nav-link" href="/">Home</a>
         </li>
 
-        <% if(loggedIn) { if(admin){ %>
+        <% if(loggedIn) { %>
         <li class="nav-item">
           <a class="nav-link" href="/posts/new">New Post</a>
         </li>
+          <% if(admin) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/admin/">Admin</a>
+            </li>
+          <% } %>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/logout">Log out</a>
+          <a class="nav-link" href="/user/logout">Log out</a>
         </li>
 
-        <%}else{ %>
+         <% } else if(!loggedIn) { %>
         <li class="nav-item">
-          <a class="nav-link" href="/posts/new">New Post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/logout">Log out</a>
-        </li>
-        <% }}%> <% if(!loggedIn) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/login">Login</a>
+          <a class="nav-link" href="/user/auth/login">Login</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/auth/register">Sign Up</a>
+          <a class="nav-link" href="/user/auth/register">Sign Up</a>
         </li>
         <%}%>
       </ul>

@@ -1,4 +1,4 @@
-const Category = require("../models/Category.js");
+const Category = require("../../models/Category.js");
 
 module.exports = (req, res) => {
   Category.create(req.body, (error, category) => {

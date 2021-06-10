@@ -1,4 +1,4 @@
-const BlogPost = require("../models/BlogPost.js");
+const BlogPost = require("../../models/BlogPost");
 const path = require("path");
 
 module.exports = async (req, res) => {
@@ -41,5 +41,5 @@ module.exports = async (req, res) => {
       }
     );
   }
-  res.redirect("/");
+  res.redirect('/posts/post/' + selectedPost._id);
 };
