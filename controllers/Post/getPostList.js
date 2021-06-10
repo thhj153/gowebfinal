@@ -1,5 +1,5 @@
-const BlogPost = require('../models/BlogPost.js')
-const Category = require("../models/Category.js")
+const BlogPost = require('../../models/BlogPost.js')
+const Category = require("../../models/Category.js")
 
 module.exports = async (req,res) =>{
 
@@ -13,7 +13,6 @@ module.exports = async (req,res) =>{
     const catName = cat.name;
 
     const categories = await Category.find({});
-    
     
     res.render('postList', {
         catName,

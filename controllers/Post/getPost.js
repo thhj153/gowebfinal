@@ -1,6 +1,7 @@
-const BlogPost = require("../models/BlogPost.js");
-const Category = require("../models/Category.js");
-const Comment = require("../models/Comment");
+const BlogPost = require("../../models/BlogPost");
+const Category = require("../../models/Category");
+const Comment = require("../../models/Comment");
+
 module.exports = async (req, res) => {
   let postID = req.params.id;
 

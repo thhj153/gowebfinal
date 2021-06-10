@@ -28,9 +28,9 @@
 
                 <span class="meta">
                   <% if (blogpost.body[0].length>= 70) { %>
-                    <h2 class="subheading" style="font-size: 18px; line-height: 180%; margin-top: -9px;
-                    font-style: normal !important; font-weight:normal !important;">
-                      <%= blogpost.body[0].substring(0, 100) + " ⋯⋯" %>
+                    <h2 class="subheading" style="font-size: 16px; line-height: 180%; margin-top: -9px;
+                    font-style: normal !important; font-weight:normal !important; font-family: open sans;">
+                      <%= blogpost.body[0].substring(0, 75) + " ⋯⋯" %>
                     </h2>
                     <% } else {%>
                       <%- blogpost.body[0] -%>

@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../../models/User");
 
 module.exports = async (req, res) => {
 
@@ -18,5 +18,5 @@ module.exports = async (req, res) => {
       { grade: userList['e[' + i + '].grade'] }
     );
   }
-  res.redirect("/userlist");
+  res.redirect("/user/list");
 };

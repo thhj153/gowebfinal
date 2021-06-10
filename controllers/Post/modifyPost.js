@@ -1,5 +1,5 @@
-const BlogPost = require("../models/BlogPost.js");
-const Category = require("../models/Category.js");
+const BlogPost = require("../../models/BlogPost");
+const Category = require("../../models/Category");
 
 module.exports = async (req, res) => {
   const { selectedPost } = req.session;

@@ -1,6 +1,6 @@
-const User = require("../models/User.js");
-const GRADE = require("../util/const.js");
-const Category = require("../models/Category.js");
+const User = require("../../models/User");
+const Category = require("../../models/Category");
+const GRADE = require("../../util/const.js");
 
 module.exports = async (req, res) => {
   const users = await User.find({});

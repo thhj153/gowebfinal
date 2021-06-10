@@ -62,16 +62,17 @@
                   <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                       <label>Is Notice</label>
-                      <input type="checkbox" name="notice" id="notice" style="width: 11px; height: 11px; font-size: 1rem;"/>&nbsp; <span style="font-size: 18px;">공지사항</span> </input>
+                      <input type="checkbox" name="notice" id="notice" style="width: 11px; height: 11px; font-size: 1rem;"/>
+                      &nbsp; <span style="font-size: 18px;">공지사항</span> </input>
                     </div>
                   </div>
                 <% } %>
 
                   <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                      <label style="z-index: -5;">Category</label>
-                      <select name="category" id="category" 
-                        style="font-size: 1rem;">
+                      <label style="z-index: -5; margin-bottom: 3px;">Category</label>
+                      <select name="category" id="category" class="navbar-toggler"
+                        style="font-size: 1rem; width: 250px;">
                         <% for (var i=0; i < categories.length; i++) { %>
                           <option value=<%=categories[i]._id%>>
                             <%=categories[i].name%>

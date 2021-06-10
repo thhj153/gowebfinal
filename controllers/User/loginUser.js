@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/User");
-const GRADE = require("../util/const.js");
+const User = require("../../models/User");
+const GRADE = require("../../util/const.js");
 
 module.exports = async(req, res) => {
   const { username, password } = req.body;
