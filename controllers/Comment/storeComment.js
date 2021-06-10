@@ -1,4 +1,4 @@
-const Comment = require("../models/Comment.js");
+const Comment = require("../../models/Comment.js");
 
 module.exports = async (req, res) => {
 
@@ -9,5 +9,5 @@ module.exports = async (req, res) => {
     postid: selectedPost._id,
   });
 
-  res.redirect("/post/" + selectedPost._id);
+  res.redirect("/posts/post/" + selectedPost._id);
 };

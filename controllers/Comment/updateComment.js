@@ -1,5 +1,4 @@
-const Comment = require("../models/Comment.js");
-const path = require("path");
+const Comment = require("../../models/Comment.js");
 
 module.exports = async (req, res) => {
   const { selectedPost } = req.session;
@@ -9,5 +8,5 @@ module.exports = async (req, res) => {
       dateCommented: new Date(),
     });
 
-  res.redirect("/post/" + selectedPost._id);
+  res.redirect("/posts/post/" + selectedPost._id);
 };
