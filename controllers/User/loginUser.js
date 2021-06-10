@@ -36,11 +36,11 @@ module.exports = async(req, res) => {
 
           res.redirect("/");
         } else {
-          res.redirect("/auth/login");
+          res.redirect("user/auth/login");
         }
       });
     } else {
-      res.redirect("/auth/login");
+      res.redirect("user/auth/login");
     }
   });
 };
