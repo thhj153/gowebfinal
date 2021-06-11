@@ -4,8 +4,6 @@
     let modifier = document.getElementById('comment_modifier_' + num);
     let cmtbtn = document.getElementById('comment_btn_' + num);
    
-    container.style.visibility = b ? 'hidden' : 'visible';
-    modifier.style.visibility = !b ? 'hidden' : 'visible';
     container.style.display = b ? 'none' : 'block';
     modifier.style.display = !b ? 'none' : 'block';
     cmtbtn.style.display = b ? 'none' : 'block';
@@ -77,7 +75,7 @@
   </div>
 
   <% if (comments[i].userid._id==userInfo._id.toString()) { %>
-  <div class="container" id="comment_modifier_<%= i %>" style="visibility: hidden; display: none;
+  <div class="container" id="comment_modifier_<%= i %>" style="display: none;
   padding: 5px 0px 0px 0px">
 
     <form id='subModify<%= i %>' action="/comment/modify/<%= comments[i]._id %>" method="POST" >
