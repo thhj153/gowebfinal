@@ -1,6 +1,6 @@
 module.exports = (req, res) => {
   sess = req.session;
-  req.session.destroy((err) => {
+  req.session.destroy(() => {
     res.redirect("/");
   });
 };

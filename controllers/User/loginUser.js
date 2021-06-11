@@ -2,12 +2,12 @@ const bcrypt = require("bcrypt");
 const User = require("../../models/User");
 const GRADE = require("../../util/const.js");
 
-module.exports = async(req, res) => {
+module.exports = async (req, res) => {
   const { username, password } = req.body;
 
-  User.findOne({ username: username }, (error, user) => {
+  User.findOne({ username: username }, (_, user) => {
     if (user) {
-      bcrypt.compare(password, user.password, (error, same) => {
+      bcrypt.compare(password, user.password, (_, same) => {
         if (same) {
           req.session.userId = user._id;
           /**

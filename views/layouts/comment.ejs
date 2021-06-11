@@ -8,7 +8,29 @@
   }
 </script>
 <% for(let i = 0; i < comments.length; i++) { %>
-<div class="container" id="comment_container_<%= i %>">
+  <% if (comments[i].userid._id==userInfo._id.toString()){ %>
+              
+    <form id='subForm<%= i %>' action="/comment/delete/<%= comments[i]._id %>" method="GET">
+      <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
+      background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
+      font-size: 18px; margin-top: 35px;";>
+        삭제
+      </button>
+    </form>
+    <!-- <form id='subForm<%= i %>' action="/posts/commentmodify" method="POST"> -->
+      <button 
+        class="btn btn-primary delete float-right"
+        style="font-family: 'YESerif';
+                background-color: crimson; border-radius: 5px; border-color: white; height: 40px;
+                padding: 10px 20px; line-height: 0px;
+                font-size: 18px; margin-top: 35px;";
+        onclick="modify(true, '<%= i %>')"
+      >
+        댓글 수정
+      </button>
+    <!-- </form> -->
+    <% } %>
+<div class="container" id="comment_container_<%= i %>"style="width:700px;float: right; padding:0;">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
       <div class="post-heading">
@@ -32,50 +54,29 @@
             <%- comments[i].body -%>
           <% } %>
         </span>
-        <% if (comments[i].userid._id==userInfo._id.toString()){ %>
-              
-        <form id='subForm<%= i %>' action="/comment/delete/<%= comments[i]._id %>" method="GET">
-          <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
-          background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
-          font-size: 18px; margin-top: 35px;";>
-            삭제
-          </button>
-        </form>
-        <!-- <form id='subForm<%= i %>' action="/posts/commentmodify" method="POST"> -->
-          <button 
-            class="btn btn-primary delete float-right"
-            style="font-family: 'YESerif';
-                    background-color: crimson; border-radius: 5px; border-color: white; height: 40px;
-                    padding: 10px 20px; line-height: 0px;
-                    font-size: 18px; margin-top: 35px;";
-            onclick="modify(true, '<%= i %>')"
-          >
-            댓글 수정
-          </button>
-        <!-- </form> -->
-        <% } %>
+        
       </div>
     </div>
   </div>
 </div>
-<div class="container" id="comment_modifier_<%= i %>" style='visibility: hidden'>
+<div class="container" id="comment_modifier_<%= i %>" style='visibility: hidden; width:500px'>
   <div class='row'>
     <div class="col-lg-8 col-md-10 mx-auto">
-      <div class='post-heading'>
+      <div class='post-heading'style="float: left;">
 
-        <form id='subModify<%= i %>' action="/comment/modify/<%= comments[i]._id %>" method="POST">
-          <input form='subModify<%= i %>' name='body' value="<%- comments[i].body -%>">
+        <form id='subModify<%= i %>' action="/comment/modify/<%= comments[i]._id %>" method="POST" >
+          <input form='subModify<%= i %>' name='body' value="<%- comments[i].body -%>"style="border:none; border-bottom:3px black solid;width: 700px;">
           <button type="submit" action="/posts/commentmodify" class="btn btn-primary delete float-right"style="font-family: 'YESerif';
           background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
-          font-size: 18px; margin-top: 35px;"; >
-            확인
+          font-size: 18px; "; >
+            수정
           </button>
         </form>
         <button 
           class="btn btn-primary delete float-right"
           style="font-family: 'YESerif'; background-color: crimson; 
           border-radius: 5px; border-color: white; height: 40px; 
-          padding: 10px 20px; line-height: 0px; font-size: 18px; margin-top: 35px;";
+          padding: 10px 20px; line-height: 0px; font-size: 18px; ";
           onclick="modify(false, '<%= i %>')"
         >
           취소
