@@ -61,26 +61,28 @@
             <div class="container" style="position: relative; width:max-content;">
             </br>
 
-            <%/* if (blogpost.userid==userInfo._id.toString() ){ */%>
+            <% if (blogpost.userid===loggedIn ){ %>
               <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
               <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
-              <%/* } */%>
+              <% } %>
 
             </div>
             <%- include('layouts/comment'); -%>
-                <form action="/comment/store" method="POST" enctype="multipart/form-data" style="font-family: 'YESerif'; ">
-                                  <div class="control-group">
-                                    <div class="form-group floating-label-form-group controls">
+              <form action="/comment/store" method="POST" enctype="multipart/form-data" style="font-family: 'YESerif'; height: 100px;margin-top: 100px;">
+                  <div style="display: flex;justify-content: space-around; width: 500px;float: right;">               
+                  <div class="control-group" style="width: 500px; float: right;">
+                                    <div class="form-group floating-label-form-group controls" style="border-bottom: 3px black solid;" >
                                       <label>Description</label>
                                       <textarea rows="1" class="form-control" id="body" name="body"></textarea>
                                     </div>
                                   </div>
                                     <div class="form-group">
                                       <button type="submit" class="btn btn-primary float-right" id="sendMessageButton" class="navbar-toggler"
-                                        style="margin-top: 0.5rem;">
-                                        Send
+                                        style="margin: 1rem;">
+                                        Comment
                                       </button>
                                     </div>
+                                  </div> 
                 </form>
             </div>
           </div>

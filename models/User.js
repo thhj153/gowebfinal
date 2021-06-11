@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const UserSchema = new Schema({
   username: {
-    // pass in config object. and put in validation rules
     type: String,
     required: true,
     unique: true,
@@ -22,7 +21,6 @@ const UserSchema = new Schema({
   },
 });
 
-// note: no lambda func! (not work!)
 UserSchema.pre("save", function (next) {
   const user = this;
   bcrypt.hash(user.password, 10, (error, hash) => {

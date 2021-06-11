@@ -3,16 +3,14 @@ const path = require("path");
 
 module.exports = (req, res) => {
   let image = req.files != null ? req.files.image : null;
-  let body = req.body;
+  let noticeCheck = false;
+  if (req.body.notice === "on") {
+    noticeCheck = true;
+  }
   if (image != null) {
     image.mv(
       path.resolve(__dirname, "..", "public/img", image.name),
-      async (error) => {
-        let noticeCheck = false;
-        if (req.body.notice === "on") {
-          noticeCheck = true;
-        }
-
+      async () => {
         await BlogPost.create({
           title: req.body.title,
           image: "/img/" + image.name,
@@ -25,11 +23,6 @@ module.exports = (req, res) => {
       }
     );
   } else {
-    let noticeCheck = false;
-    if (req.body.notice === "on") {
-      noticeCheck = true;
-    }
-
     BlogPost.create({
       title: req.body.title,
       body: req.body.body.split("\r\n"),

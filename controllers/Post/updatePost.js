@@ -4,14 +4,14 @@ const path = require("path");
 module.exports = async (req, res) => {
   const { selectedPost } = req.session;
   let image = req.files ? req.files.image : { name: "" };
+  let noticeCheck = false;
+  if (req.body.notice === "on") {
+    noticeCheck = true;
+  }
   if (req.files) {
     image.mv(
       path.resolve(__dirname, "..", "public/img", image.name),
-      async (error) => {
-        let noticeCheck = false;
-        if (req.body.notice === "on") {
-          noticeCheck = true;
-        }
+      async () => {
         await BlogPost.updateOne(
           { _id: selectedPost._id },
           {
@@ -26,10 +26,6 @@ module.exports = async (req, res) => {
       }
     );
   } else {
-    let noticeCheck = false;
-    if (req.body.notice === "on") {
-      noticeCheck = true;
-    }
     await BlogPost.updateOne(
       { _id: selectedPost._id },
       {
@@ -41,5 +37,5 @@ module.exports = async (req, res) => {
       }
     );
   }
-  res.redirect('/posts/post/' + selectedPost._id);
+  res.redirect("/posts/post/" + selectedPost._id);
 };

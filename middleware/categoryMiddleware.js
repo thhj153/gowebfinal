@@ -2,7 +2,7 @@ const User = require("../models/User");
 const Category = require("../models/Category");
 
 module.exports = (req, res, next) => {
-  User.findById(req.session.userId, (err, user) => {
+  User.findById(req.session.userId, (_, user) => {
     const categories = Category.find({});
     categories.map((category) => {
       if (category.grade === user.grade) {

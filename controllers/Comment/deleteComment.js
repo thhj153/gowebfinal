@@ -1,10 +1,9 @@
 const Comment = require("../../models/Comment");
 
 module.exports = (req, res) => {
-  //console.log(req.params.id);
   const { selectedPost } = req.session;
 
-  Comment.deleteOne({ _id: req.params.id }, async (err) => {
+  Comment.deleteOne({ _id: req.params.id }, () => {
     return res.redirect("/posts/post/" + selectedPost._id);
   });
 };
