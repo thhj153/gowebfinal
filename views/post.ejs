@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<header>
 
+</header>
 <%- include('layouts/header'); -%>
 
   <body>
@@ -52,44 +54,51 @@
               <%- include('layouts/leftcategory'); -%>
               
               <div class="col-lg-8 col-md-10 mx-auto" style="font-size: 14px; font-family: 'YESerif'; line-height: 175%">
-                <% for (var i=0; i < blogpost.body.length; i++) { %>
-                  <%= blogpost.body[i] %>
-                  <div style="height: 16px;"></div>
-                <% } %>
+                <div>
+                  <% for (var i=0; i < blogpost.body.length; i++) { %>
+                    <%= blogpost.body[i] %>
+                    <div style="height: 16px;"></div>
+                  <% } %>
+                
+
+                <% if (blogpost.userid===loggedIn ){ %>
+                  <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
+                  <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
+                  <% } %>
+
+                <hr/>
               </div>
-            </div>
-            <div class="container" style="position: relative; width:max-content;">
+
+              <div>
+                <div style="padding-left: 17px; padding-bottom: 5px; font-family: SAir;">댓글 작성</div>
+                  <form action="/comment/store" method="POST" enctype="multipart/form-data" style=
+                  "font-family: 'YESerif' !important; width: inherit; margin-bottom: 75px;">           
+                    <div class="control-group">
+                    <div class="form-group floating-label-form-group controls" style="border-bottom: none !important;">
+                      <textarea rows="3" id="body" name="body" required
+                      style="border: 1px #DDE solid; font-family: 'YESerif'; margin-left: 2.5%; 
+                      font-size: 0.9rem; width: 95%; display: block;"></textarea>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary float-right" id="sendMessageButton" 
+                      class="navbar-toggler" style="margin: 0.6rem 1rem 0.3rem 0.3rem; 
+                      padding: 10px 15px 10px 15px; position: relative;">comment</button>
+                    </div>
+                  </form>
+                
+              </div>
+                <%- include('layouts/comment'); -%>
+              
+
             </br>
 
-            <% if (blogpost.userid===loggedIn ){ %>
-              <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
-              <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
-              <% } %>
-
-            </div>
-            <%- include('layouts/comment'); -%>
-              <form action="/comment/store" method="POST" enctype="multipart/form-data" style="font-family: 'YESerif'; height: 100px;margin-top: 100px;">
-                  <div style="display: flex;justify-content: space-around; width: 500px;float: right;">               
-                  <div class="control-group" style="width: 500px; float: right;">
-                                    <div class="form-group floating-label-form-group controls" style="border-bottom: 3px black solid;" >
-                                      <label>Description</label>
-                                      <textarea rows="1" class="form-control" id="body" name="body"></textarea>
-                                    </div>
-                                  </div>
-                                    <div class="form-group">
-                                      <button type="submit" class="btn btn-primary float-right" id="sendMessageButton" class="navbar-toggler"
-                                        style="margin: 1rem;">
-                                        Comment
-                                      </button>
-                                    </div>
-                                  </div> 
-                </form>
-            </div>
           </div>
-        </article>
-        <hr />
+        </div>
+      </article>
+      <hr />
         <%- include('layouts/footer'); -%>
-          <%- include('layouts/scripts'); -%>
+        <%- include('layouts/scripts'); -%>
   </body>
 
 </html>

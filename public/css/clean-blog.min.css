@@ -72,6 +72,12 @@
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .explain {
+        margin-right: 0px !important;
+    }
+}
+
 .alpha {
     list-style: none;
 }
@@ -512,6 +518,29 @@ footer .copyright {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
+/* red button */
+
+.red {
+    position: relative; 
+    font-size: 18px;
+    background-color: crimson !important;
+    border-color: crimson !important; 
+    border-radius: 5px;  
+    border-style: solid;
+    height: 40px; 
+    padding: 10px 20px; 
+    line-height: 0px; 
+    color: white; 
+    margin-top: 20px;
+    }
+      
+    .red:hover {
+    background-color: red !important;
+    border-color: red !important;
+    }
+      
+    /* red button */
+
 .btn-primary {
     background-color: navy;
     border-color: navy;
@@ -521,8 +550,8 @@ footer .copyright {
 .btn-primary:focus,
 .btn-primary:hover {
     color: #fff;
-    background-color: #00657b !important;
-    border-color: #00657b !important
+    background-color: #00657b;
+    border-color: #00657b
 }
 
 .btn-lg {

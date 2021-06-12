@@ -2,87 +2,107 @@
   function modify(b, num) {
     let container = document.getElementById('comment_container_' + num);
     let modifier = document.getElementById('comment_modifier_' + num);
+    let cmtbtn = document.getElementById('comment_btn_' + num);
    
-    container.style.visibility = b ? 'hidden': 'visible';
-    modifier.style.visibility = !b ? 'hidden': 'visible';
+    container.style.display = b ? 'none' : 'block';
+    modifier.style.display = !b ? 'none' : 'block';
+    cmtbtn.style.display = b ? 'none' : 'block';
+
   }
 </script>
-<% for(let i = 0; i < comments.length; i++) { %>
-  <% if (comments[i].userid._id==userInfo._id.toString()){ %>
-              
-    <form id='subForm<%= i %>' action="/comment/delete/<%= comments[i]._id %>" method="GET">
-      <button type="submit" class="btn btn-primary delete float-right" form="subForm<%= i %>" style="font-family: 'YESerif';
-      background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
-      font-size: 18px; margin-top: 35px;";>
-        삭제
-      </button>
-    </form>
-    <!-- <form id='subForm<%= i %>' action="/posts/commentmodify" method="POST"> -->
-      <button 
-        class="btn btn-primary delete float-right"
-        style="font-family: 'YESerif';
-                background-color: crimson; border-radius: 5px; border-color: white; height: 40px;
-                padding: 10px 20px; line-height: 0px;
-                font-size: 18px; margin-top: 35px;";
-        onclick="modify(true, '<%= i %>')"
-      >
-        댓글 수정
-      </button>
-    <!-- </form> -->
-    <% } %>
-<div class="container" id="comment_container_<%= i %>"style="width:700px;float: right; padding:0;">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <div class="post-heading">
-          
-        <span class="meta">Posted by
-          <a href="#">
-            <%= comments[i].userid.username %>
-          </a>
-            on <%= comments[i].dateCommented.toDateString() %>
-          <hr style="border-color: aliceblue;">
-          </hr>
-        </span>
 
-        <span class="meta">
-          <% if (comments[i].body.length>= 70) { %>
-            <h2 class="subheading" style="font-size: 18px; line-height: 180%; margin-top: -9px;
-          font-weight: 100 !important; font-style: oblique !important; font-family: 'KOTRA_BOLD-Bold' !important;">
-              <%= comments[i].body.substring(0, 70) + " ……" %>
-            </h2>
-          <% } else {%>
-            <%- comments[i].body -%>
-          <% } %>
-        </span>
-        
-      </div>
+<hr style="margin-top: 8px;"/>
+<span style="font-family: SAir;">댓글 (<%=comments.length%>)</span>
+
+<div style="height: fit-content;">
+<% for(let i = comments.length-1; i >= 0; i--) { %>
+  <div>    
+    <% var y, m, d, h, min %>
+    <% y = comments[i].dateCommented.getYear() + 1900 %>
+    <% if (comments[i].dateCommented.getMonth()+1 < 10 ) {%>
+    <% m = '0'+String( comments[i].dateCommented.getMonth()+1 )%>
+    <% } else { m = comments[i].dateCommented.getMonth()+1 } %>
+    <% if (comments[i].dateCommented.getDate() < 10 ) { %>
+    <% d = '0'+String( comments[i].dateCommented.getDate() )%>
+    <% } else { d = comments[i].dateCommented.getDate() } %>
+    <% if (comments[i].dateCommented.getHours() < 10 ) {%>
+    <% h = '0'+String( comments[i].dateCommented.getHours() )%>
+    <% } else { h = comments[i].dateCommented.getHours() } %>
+    <% if (comments[i].dateCommented.getMinutes() < 10 ) {%>
+    <% min = '0'+String( comments[i].dateCommented.getMinutes() )%>
+    <% } else { min = comments[i].dateCommented.getMinutes() } %>
+    <% console.log(min, h) %>
+
+    <div class="post-meta">
+      <span style="color: rgb(94, 3, 180); font-size: 15px;font-family: 'RIDSerif'; letter-spacing: 1px;">
+        <%= comments[i].userid.username %></span>
+      <span style="font-size: 13px; float:right;"><%=y%>-<%=m%>-<%=d%> <%=h%>:<%=min%></span> 
     </div>
   </div>
-</div>
-<div class="container" id="comment_modifier_<%= i %>" style='visibility: hidden; width:500px'>
-  <div class='row'>
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <div class='post-heading'style="float: left;">
 
-        <form id='subModify<%= i %>' action="/comment/modify/<%= comments[i]._id %>" method="POST" >
-          <input form='subModify<%= i %>' name='body' value="<%- comments[i].body -%>"style="border:none; border-bottom:3px black solid;width: 700px;">
-          <button type="submit" action="/posts/commentmodify" class="btn btn-primary delete float-right"style="font-family: 'YESerif';
-          background-color: crimson; border-radius: 5px; border-color: white; height: 40px; padding: 10px 20px; line-height: 0px;
-          font-size: 18px; "; >
-            수정
+  <hr style="border-color: aliceblue; margin: 5px 0px 7px 0px"/>
+
+  <div id="comment_container_<%= i %>">
+    
+
+    <div style="font-size: 13px;">
+      <% for (var k = 0; k < comments[i].body.length; k++) { %>
+        <%= comments[i].body[k] %>
+        <div style="height: 11px;"></div>
+      <% } %>
+    </div>
+    <% if (comments[i].userid._id==userInfo._id.toString()) { %>
+
+      <div id="comment_btn_<%= i %>" class="button-set" style="margin-bottom: 10px; margin-top: 15px; display: block;">
+            <button class="red btn btn-primary float-right" onclick="modify(true, '<%= i %>')"
+              style="font-size: 13px; font-weight: bold; width: 60px; padding:7px 7px 5px 7px; height: 30px; line-height: 0%;
+              margin: 0px 3px 0px 0px; font-family: SAir; display: inline;" >
+              수정
+            </button>
+
+        <span style="display: inline-block;"></span>
+        <form id='subForm<%= i %>' action="/comment/delete/<%= comments[i]._id %>" method="GET" style="display: inline;">
+          <button type="submit" class="red btn btn-primary float-right" form="subForm<%= i %>" 
+          style="font-size: 13px; font-weight: bold; width: 60px; padding:7px 7px 5px 7px; height: 30px; 
+          margin: 0px 15px 0px 0px; font-family: SAir;" >
+            삭제
           </button>
         </form>
-        <button 
-          class="btn btn-primary delete float-right"
-          style="font-family: 'YESerif'; background-color: crimson; 
-          border-radius: 5px; border-color: white; height: 40px; 
-          padding: 10px 20px; line-height: 0px; font-size: 18px; ";
-          onclick="modify(false, '<%= i %>')"
-        >
-          취소
-        </button>
       </div>
-    </div>
+
+    <% } %>
+
   </div>
-</div>
+
+  <% if (comments[i].userid._id==userInfo._id.toString()) { %>
+  <div class="container" id="comment_modifier_<%= i %>" style="display: none;
+  padding: 5px 0px 0px 0px">
+
+    <form id='subModify<%= i %>' action="/comment/modify/<%= comments[i]._id %>" method="POST" >
+      
+      <textarea rows="5" id="body" name="body" required
+      style="border: 1px #DDE solid; font-family: 'YESerif'; margin-left: 2.5%; 
+      font-size: 0.9rem; width: 95%; display: block;"><% for (var k = 0; k < comments[i].body.length; k++){%><%=comments[i].body[k]%>
+<%}%></textarea>
+
+      <button type="submit" action="/posts/commentmodify" class="red btn btn-primary float-right" 
+      style="font-size: 13px; font-weight: bold; width: 60px; padding:7px 7px 5px 7px; height: 30px;
+      word-wrap: break-word; margin: 1px 3px 0px 0px; font-family: SAir; margin-top: 15px;">저장</button>
+    </form>
+
+    <span style="display: inline-block;"></span>
+
+    <button 
+      class="red btn btn-primary float-right"
+      onclick="modify(false, '<%= i %>')"
+      style="font-size: 13px; font-weight: bold; width: 60px; padding:7px 7px 5px 7px; height: 30px;
+        margin: 1px 15px 0px 0px; font-family: SAir; margin-top: 15px;">취소</button>
+
+  </div>
+  <% } %>
+
+
+  <hr style="margin-top: 33px;">
 <% } %>
+</div>
+
