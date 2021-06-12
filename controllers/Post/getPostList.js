@@ -5,9 +5,10 @@ module.exports = async (req,res) =>{
 
     let categoryID = req.params.id;
 
-    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('category').populate('userid');
+    const blogposts =  await BlogPost.find({'category' : categoryID}).populate('userid').populate('category');
     const userInfo = req.session.User;
-    
+    console.log("여기!")
+    console.log(blogposts)
     const cat = await Category.findById(categoryID);
     console.log(cat);
     const catName = cat.name;
