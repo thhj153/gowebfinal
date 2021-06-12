@@ -7,7 +7,10 @@ module.exports = async (req, res) => {
 
   const comments = await Comment.find({ postid: postID }).populate("userid");
 
-  const blogpost = await BlogPost.findById(postID).populate("category");
+  const blogpost = await BlogPost.findById(postID)
+    .populate("category")
+    .populate("userid");
+
   const categoryID = blogpost.category._id;
   req.session.selectedPost = blogpost;
   const cat = await Category.findById(categoryID);

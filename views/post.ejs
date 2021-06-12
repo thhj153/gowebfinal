@@ -61,7 +61,7 @@
                   <% } %>
                 
 
-                <% if (blogpost.userid===loggedIn ){ %>
+                <% if (blogpost.userid._id.toString() === loggedIn ){ %>
                   <a href="/posts/modify" class="btn btn-primary post" >MODIFY</a>
                   <a href="/posts/delete" class="btn btn-primary post" >DELETE</a>
                   <% } %>
