@@ -15,7 +15,11 @@
                     font-style: bold;">
                         <% if (blogposts[i].notice == true) { %>
                             <%= "공지사항" %>
-                        <% } %> </div>
+                        <% } %> 
+                    <span style="font-size: 14px; color: blueviolet; font-family: 'YESerif'; ">
+                        <%blogposts[i].category%>
+                    </span>
+                    </div>
 
                     <h2 class="post-title" style="margin-top: 8px;">
                     <%= blogposts[i].title %> </h2>
@@ -32,8 +36,8 @@
                     <% } else { d = blogposts[i].datePosted.getDate() } %>
 
                 <p class="post-meta">
-                By: <span style="color: rgb(117, 114, 172);"><%= blogposts[i].userid.username %></span> </br>
-                Date: <%=y%>-<%=m%>-<%=d%>
+                By : &nbsp;<span style="color: rgb(117, 114, 172);"><%= blogposts[i].userid.username %></span> </br>
+                Date : &nbsp;<%=y%>-<%=m%>-<%=d%>
                 </p>
             </div>
             <hr />
