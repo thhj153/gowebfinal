@@ -18,31 +18,42 @@
                 <h2>
                   <%= blogpost.title %>
                 </h2>
+                <span class="meta" style="font-size: 17px;">
+                  <% var y, m, d %>
+                  <% y = blogpost.datePosted.getYear() + 1900 %>
+                  <% if (blogpost.datePosted.getMonth()+1 < 10 ) {%>
+                  <% m = '0'+String( blogpost.datePosted.getMonth()+1 )%>
+                  <% } else { m = blogpost.datePosted.getMonth()+1 } %>
+                  <% if (blogpost.datePosted.getDate() < 10 ) { %>
+                  <% d = '0'+String( blogpost.datePosted.getDate() )%>
+                  <% } else { d = blogpost.datePosted.getDate() } %>
 
-                <span class="meta" style="font-size: 17px;">Posted by
-                  <a href="#">
-                    <%= blogpost.userid.username %>
-                  </a>
-                  on <%= blogpost.datePosted.toDateString() %>
-                    <hr style="border-color: aliceblue;">
-                    </hr>
-                </span>
+                <p class="post-meta" style="margin: 0px 0px 0px 5px; font-size: 14px; font-family: 'YESerif';
+                font-style: normal;">
+                작성자: <span style="color: aliceblue;"><%= blogpost.userid.username %></span> <br/>
+                작성일: <%=y%>-<%=m%>-<%=d%>
+                </p>
+              </span>
 
-                <span class="meta">
+                <hr style="border-color: aliceblue; margin: 10px 0px 10px 0px;"></hr>
+
+                <span class="meta" style="font-size: 1rem; line-height: 180%; margin: 0px 0px 0px 10px;
+                font-weight:normal !important; font-family: 'YESerif' !important; font-style: normal !important;">
                   <% if (blogpost.body[0].length>= 70) { %>
-                    <h2 class="subheading" style="font-size: 16px; line-height: 180%; margin-top: -9px;
-                    font-style: normal !important; font-weight:normal !important; font-family: open sans;">
+                    <h2 class="subheading" style="font-size: 1rem; line-height: 180%;
+                    font-weight:normal !important; font-family: 'YESerif' !important; font-style: normal !important;">
                       <%= blogpost.body[0].substring(0, 75) + " ⋯⋯" %>
-                    </h2>
                     <% } else {%>
                       <%- blogpost.body[0] -%>
                         <% } %>
+                    </h2>
                 </span>
               </div>
-            </div>
+            
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
       <%- include('layouts/categorybar'); -%>
 
