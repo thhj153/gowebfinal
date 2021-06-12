@@ -4,7 +4,10 @@
         <%- include('leftcategory'); -%>
         
         <div class="col-lg-8 col-md-10 mx-auto">
-            <% for (var i=blogposts.length-1; i >= 0; i--) { %>
+            <% var show = blogposts.length-1 %>
+            <% for (var i=show; i >= 0; i--) { %>
+            
+
             <div class="post-preview" style="margin-top: 20px;">
                 <a href="/posts/post/<%= blogposts[i]._id %>">
 
@@ -13,7 +16,7 @@
                         <% if (blogposts[i].notice == true) { %>
                             <%= "공지사항" %>
                         <% } %> </div>
-                        
+
                     <h2 class="post-title" style="margin-top: 8px;">
                     <%= blogposts[i].title %> </h2>
 

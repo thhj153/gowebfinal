@@ -1,107 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('layouts/header'); -%>
+<style>
+  .control-group {
+    font-family: 'YESerif';
+    margin-bottom: 5px;
+  }
+
+  .form-group {
+    font-family: 'YESerif' !important;
+    font-size: '1rem' !important;
+  }
+
+  .form-control {
+    font-family: 'YESerif' !important;
+    font-size: 18px !important;
+    line-height: 180% !important;
+  }
+
+</style>
+<%- include('layouts/header'); -%>
 
   <body>
     <%- include('layouts/navbar'); -%>
 
-    <!-- Page Header -->
-    <header
-      class="masthead"
-      style="background-image: url('/img/contact-bg.jpg')"
-    >
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
-              <h1>Modify Post</h1>
+      <!-- Page Header -->
+      <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="page-heading">
+                <h1>New Post</h1>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <%- include('layouts/categorybar'); -%>
 
     <!-- Main Content -->
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
-          <form
-            action="/posts/update"
-            method="POST"
-            enctype="multipart/form-data"
-          >
+          <form action="/posts/update" method="POST" enctype="multipart/form-data" style="font-family: YESerif;">
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Title"
-                  id="title"
-                  name="title"
-                  value="<%=blogpost.title %>"
-                />
+                <input type="text" class="form-control" placeholder="Title" id="title" name="title" value="<%=blogpost.title %>"/>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Description</label>
-                <textarea rows="5" class="form-control" id="body" name="body">
-<% for (var i=0; i < blogpost.body.length; i++){%><%=blogpost.body[i]%>
-<%} %>
-</textarea
-                >
+                <textarea rows="5" class="form-control" id="body" name="body"><% for (var i=0; i < blogpost.body.length; i++){%><%=blogpost.body[i]%>
+<%} %></textarea>
               </div>
             </div>
-            <% if(admin){ %> <% if(blogpost.notice){%>
-            <input type="checkbox" name="notice" id="notice" checked />
-            <% }else{ %>
-            <input type="checkbox" name="notice" id="notice" unchecked />
-            <% } %> 공지사항 <% } %>
-            <select name="category" id="category">
-              <% for (var i=0; i < categories.length; i++) { %> <%
-              if(blogpost.category._id == categories[i]._id.toString()) {%>
-              <option value="<%= blogpost.category._id %>" selected="selected">
-                <%= categories[i].name %>
-              </option>
-              <% }else{ %>
 
-              <option value="<%= categories[i]._id%>">
-                <%=categories[i].name%>
-              </option>
-              <% } %> <% } %>
-            </select>
+            <% if(admin){ %> <% if(blogpost.notice){%>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Is Notice</label>
+                  <input type="checkbox" name="notice" id="notice" style="width: 11px; height: 11px; font-size: 1rem;"/>
+                  &nbsp; <span style="font-size: 18px;">공지사항</span> </input>
+                </div>
+              </div>
+            <% }else{ %>
+                  <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                      <label>Is Notice</label>
+                      <input type="checkbox" name="notice" id="notice" style="width: 11px; height: 11px; font-size: 1rem;"/>
+                      &nbsp; <span style="font-size: 18px;">공지사항</span> </input>
+                    </div>
+                  </div>
+              <% } %>
+            <% } %>
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <% if(blogpost.image){ %>
-                <div
-                  alt="image"
-                  style="
-                    width: 500px;
-                    height: 500px;
-                    background: url(<%=blogpost.image%>) no-repeat;
-                  "
-                ></div>
-                <% } %> 기존이미지를 보여주고 바꾸려면 파일선택을 하고
-                안바꾸려면 그냥 update버튼을 누르도록
-                <label>Image</label>
-                <input
-                  type="file"
-                  class="form-control"
-                  id="image"
-                  name="image"
-                />
+                <label style="z-index: -5; margin-bottom: 3px;">Category</label>
+                <select name="category" id="category" class="navbar-toggler"
+                  style="font-size: 1rem; width: 250px;">
+                  <%for (var i=0; i < categories.length; i++) { %> 
+                    <%if(blogpost.category._id == categories[i]._id.toString()) {%>
+                      <option value="<%= blogpost.category._id %>" selected="selected">
+                        <%= categories[i].name %>
+                      </option>
+                      <% } else { %>
+                      <option value="<%= categories[i]._id%>">
+                        <%=categories[i].name%>
+                      </option>
+                      <% } %> <% } %>
+                    </select>
               </div>
-            </div>
+
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <% if(blogpost.image){ %>
+                    <div alt="image" style="width: auto; height: auto; max-width: auto; max-height: 300px;
+                    background: url(<%=blogpost.image%>) no-repeat;"></div>
+                    <% } %> 
+                  <label> Background Image</label>
+                  <input type="file" class="form-control" style="font-size: 1rem !important;"
+                    id="image" name="image" style=/>
+                    <div style="height: 1.2rem; color: crimson;">이미지를 바꾸실 때만, 새로운 이미지를 등록해주세요.</div>
+                </div>
+              </div>
 
             <div class="form-group">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                id="sendMessageButton"
-              >
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">
                 UPDATE
               </button>
             </div>
