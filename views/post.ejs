@@ -9,7 +9,12 @@
     <%- include('layouts/navbar'); -%>
 
       <!-- Page Header -->
+      <%if (blogpost.image) {%>
       <header class="masthead" style="background-image: url('<%= blogpost.image %>')">
+      <% } else { %>
+        <%var i = parseInt(Math.random()*1000)%4 %>
+      <header class="masthead" style="background-image: url('/img/basic-bg<%=i%>.jpg')">
+        <% console.log(i)} %>
         <div class="overlay"></div>
         <div class="container">
           <div class="row">

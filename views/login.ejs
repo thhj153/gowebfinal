@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <%- include('layouts/header'); -%>
 
   <body>
@@ -26,10 +28,10 @@
             <div class="col-lg-8 col-md-10 mx-auto">
               <div class="post-preview" style="visibility: hidden; height: 1px;"></div>
               <!-- for browser to know tha tthe form contains mutli media. will encripy multie media and send to server -->
-              <div class="container">
+              <div class="container" style="width: 69%;">
                 <form action="/user/login" method="POST" enctype="multipart/form-data">
                   <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
+                    <div class="form-group floating-label-form-group controls" style="margin-bottom: 1rem;">
                       <label>User Name</label>
                       <input type="text" class="form-control" placeholder="User Name" id="username" name="username" />
                     </div>
@@ -41,14 +43,25 @@
                       <input type="password" class="form-control" placeholder="Password" id="password"
                         name="password" />
                     </div>
-                  </div>
 
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">
-                      Login
-                    </button>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary float-right" style="margin: 1rem 0rem 0rem 0rem" id="sendMessageButton">
+                        Login
+                      </button>
+                    </div>
+
                   </div>
                 </form>
+
+                <div style="margin-top: 7rem; font-size: 15px; 
+                font-family: 'YESerif'; 
+                margin-left: 3px; text-align: center; line-height: 300%;">
+                <hr/>
+                계정이 없으신가요 ? <br/>
+                <a href="/user/auth/register" style="color: rgb(134, 154, 0);
+                font-size: 17px">
+                  계정 생성으로 이동하기</a>
+                </div>
               </div>
             </div>
           </div>
