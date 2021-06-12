@@ -544,6 +544,7 @@ footer .copyright {
 .btn-primary {
     background-color: navy;
     border-color: navy;
+    border-radius: 5%!important;
 }
 
 .btn-primary:active,
