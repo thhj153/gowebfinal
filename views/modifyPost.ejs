@@ -98,8 +98,9 @@
 
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
+                  <div style="margin: 10px 0px 5px 0px;">현재 이미지</div>
                   <% if(blogpost.image){ %>
-                    <div alt="image" style="width: auto; height: auto; max-width: auto; max-height: 300px;
+                    <div alt="image" style="width: auto; height: 300px; max-width: auto; max-height: 300px;
                     background: url(<%=blogpost.image%>) no-repeat;"></div>
                     <% } %> 
                   <label> Background Image</label>
@@ -120,6 +121,7 @@
     </div>
 
     <hr />
-    <%- include('layouts/footer'); -%> <%- include('layouts/scripts'); -%>
+    <%- include('layouts/footer'); -%> 
+    <%- include('layouts/scripts'); -%>
   </body>
 </html>
