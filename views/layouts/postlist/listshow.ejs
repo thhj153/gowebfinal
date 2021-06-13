@@ -15,8 +15,7 @@
         }
 
         let postion = document.getElementById('indexer');
-        postion.innerText(String(index+1) + "/" + String(blogpost.length));
-        postion.style.display = 'block';
+        postion.innerText= String(index+1) + "/" + String(pages.length);
 
     }
     previousPage = () => {
@@ -24,7 +23,8 @@
     }
     nextPage = () => {
         let pages = document.getElementsByClassName('postpage');
-        if(index < pages.length - 1) setIndex(index + 1);
+        if(index < pages.length - 1) setIndex(index * 1 + 1);
+        window.scrollTo(0, 250);
     }
 
 </script>
@@ -58,46 +58,42 @@
                 if (i % 10 == 0) { %>
                     <div id = 'page-<%=parseInt(i/10)%>' class='postpage'>
                 <% } %>
-                        <%- include('./element', {element : posts[i]}) %>
+                        <%- include('./element', {element : posts[posts.length - i - 1]}) %>
                 <% if (i % 10 == 9 || i == posts.length - 1) { %>
                     </div>
                 <% }
             } %>
-            <script> setIndex(0); </script>
+            
 
 <!--------------------- Pagination ----------------------->
-        <table>
-            <tbody>
-                <div class="pagenation float-right" style="list-style: none; padding:0px; display: inline-block; margin-right: 25px;">
-                    
-                    <span class="previous" >
-                        <button
-                            class="btn btn-primary"
-                            id='previousButton'
-                            onclick='previousPage()'
-                            style="margin:10px 10px 10px 10px; 
-                            padding: 5px 15px 5px 15px; width: 120px;
-                            text-transform:none !important">
-                            Previous</button>
-                    </span>
 
-                    
+        <div class="pagenation float-right" style="list-style: none; padding:0px; display: inline-block; margin-right: 25px;">
+            <span class="previous" >
+                <button
+                    class="btn btn-primary"
+                    id='previousButton'
+                    onclick='previousPage()'
+                    style="margin:10px 10px 10px 10px; 
+                    padding: 5px 15px 5px 15px; width: 120px;
+                    text-transform:none !important">
+                    Previous</button>
+            </span>
 
-                        <button
-                            class="btn btn-primary"
-                            id='nextButton'
-                            onclick='nextPage()'
-                            style="margin:10px 10px 10px 10px;
-                            padding: 5px 15px 5px 15px; width: 120px;
-                            text-transform:none !important;"
-                        >
-                            Next Page</button>
-                    </span>
-                    <span id="indexer" style="font-family: SAir; font-size: 14px;"></span>
-                </div>
-            </tbody>
-        </table>
+            <span id="indexer" style="font-family: SAir; font-size: 15px; display: inline-block; width: 50px; text-align: center;"></span>
+
+                <button
+                    class="btn btn-primary"
+                    id='nextButton'
+                    onclick='nextPage()'
+                    style="margin:10px 10px 10px 10px;
+                    padding: 5px 15px 5px 15px; width: 120px;
+                    text-transform:none !important;"
+                >
+                    Next Page</button>
+            </span>
+            
+        </div>
     </div>
 </div>
-
+<script> setIndex(0); </script>
 <hr />
