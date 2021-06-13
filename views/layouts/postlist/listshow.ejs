@@ -1,0 +1,110 @@
+<%
+    paginate = (posts, i) => {
+        for (let j = i + 9 > posts.length - 1 ? posts.length - 1 : i + 9; j >= i; --j) { %>
+            <%- include('./element', {element : posts[j]}) %>
+        <%}
+    }
+    var posts = [], notices = [];
+    for(let i = 0; i < blogposts.length; ++i) {
+        blogposts[i].notice ?  notices.push(blogposts[i]) : posts.push(blogposts[i]) ;
+    }
+    var index = 0;
+    setIndex = n => {
+        if(n == -10) index = index < 10 ? index : index - 10;
+        if(n == 10) index = index + 10 > posts.length ? index : index + 10;
+        //paginate(posts, index);
+        console.log(index);
+    }
+%>
+
+<script>
+    $(function () {
+        let container = $('#pagination');
+        container.pagination({
+            dataSource: [
+                {name: "hello1"},
+                {name: "hello2"},
+                {name: "hello3"},
+                {name: "hello4"},
+                {name: "hello5"},
+                {name: "hello6"},
+                {name: "hello7"},
+                {name: "hello8"},
+                {name: "hello9"},
+                {name: "hello10"},
+                {name: "hello11"},
+                {name: "hello12"},
+                {name: "hello13"},
+                {name: "hello14"},
+                {name: "hello15"},
+                {name: "hello16"},
+                {name: "hello17"},
+            ],
+            callback: function (data, pagination) {
+                var dataHtml = '<ul>';
+                
+
+                $.each(data, function (index, item) {
+                    dataHtml += '<li>' + item.name + '</li>';
+                    console.log(dataHtml)
+                });
+
+                dataHtml += '</ul>';
+
+                $("#data-container").html(dataHtml);
+            }
+        })
+    })
+</script>
+
+<div>
+    <section>
+        <div id="data-container" style="width: 1300px; height: 500px;"></div>
+        <div id="pagination"></div>
+    </section>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        
+        <%- include('../leftcategory'); -%>
+           
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- Just Title Image -->
+            <% if (blogposts.length === 0) { %>
+            <div style="font-family: SAir; font-size: 20px; text-align: center; margin: 200px 0px 200px 0px">게시글이 없습니다.</div>
+            <%} else { %>
+                <span class="float-right" style="font-family: SAir; font-size: 14px;"><%=(blogposts.length)%>개 게시글</span>
+            <%}%>
+            
+            <!-- Just Title Image -->
+            <div style="height: 20px;"></div>
+
+            <!-- 공지사항 먼저 모두 가지고 오기 -->
+            <% for (let i =  notices.length - 1; i >= 0; --i) { %>
+                <%- include('./element', {element : notices[i]}) %>
+            <% } %>
+
+            <% paginate(posts, index) %>
+
+            <!-- Pager -->
+        <ul class="pagenation" style="list-style: none; padding:0px">
+            <li class="previous" style="display: inline;">
+                <button class="btn btn-primary" onclick='setIndex(-10)' style="margin:10px 0px 10px 10px; 
+                padding: 5px 15px 5px 15px; width: 110px;">
+                    previous</button>
+            </li>
+
+            <li class="next" style="display: inline;">
+                <button class="btn btn-primary float-right"  onclick='setIndex(10)' style="margin:10px 10px 10px 0px; 
+                padding: 5px 15px 5px 15px; width: 110px">
+                    N e x t</button>
+            </li>
+        </ul>
+
+
+    </div>
+</div>
+
+<hr />

@@ -1,0 +1,33 @@
+<div class="post-preview" style="margin-top: 20px;">
+    <a href="/posts/post/<%= element._id %>">
+
+        <div style="font-size: 14px; color: #787878; font-family: 'YESerif'; margin-left: 3px;">
+            <% if (element.notice == true) { %>
+            <span style="font-size: 15px; color: crimson; font-family: 'YESerif'; 
+                        font-style: bold;">
+                                <%= "공지사항" %>
+            </span>
+            <% } %>
+            <%=element.category.name%>
+        </div>
+
+        <h2 class="post-title" style="margin-top: 8px;">
+        <%= element.title %> </h2>
+
+    </a>
+    
+        <% var y, m, d %>
+        <% y = element.datePosted.getYear() + 1900 %>
+        <% if (element.datePosted.getMonth()+1 < 10 ) {%>
+        <% m = '0'+String( element.datePosted.getMonth()+1 )%>
+        <% } else { m = element.datePosted.getMonth()+1 } %>
+        <% if (element.datePosted.getDate() < 10 ) { %>
+        <% d = '0'+String( element.datePosted.getDate() )%>
+        <% } else { d = element.datePosted.getDate() } %>
+
+    <p class="post-meta">
+    By : &nbsp;<span style="color: rgb(117, 114, 172);"><%= element.userid.username %></span> </br>
+    Date : &nbsp;<%=y%>-<%=m%>-<%=d%>
+    </p>
+</div>
+<hr />
