@@ -1,69 +1,27 @@
 <%
-    paginate = (posts, i) => {
-        for (let j = i + 9 > posts.length - 1 ? posts.length - 1 : i + 9; j >= i; --j) { %>
-            <%- include('./element', {element : posts[j]}) %>
-        <%}
-    }
     var posts = [], notices = [];
     for(let i = 0; i < blogposts.length; ++i) {
         blogposts[i].notice ?  notices.push(blogposts[i]) : posts.push(blogposts[i]) ;
     }
-    var index = 0;
-    setIndex = n => {
-        if(n == -10) index = index < 10 ? index : index - 10;
-        if(n == 10) index = index + 10 > posts.length ? index : index + 10;
-        //paginate(posts, index);
-        console.log(index);
-    }
 %>
 
 <script>
-    $(function () {
-        let container = $('#pagination');
-        container.pagination({
-            dataSource: [
-                {name: "hello1"},
-                {name: "hello2"},
-                {name: "hello3"},
-                {name: "hello4"},
-                {name: "hello5"},
-                {name: "hello6"},
-                {name: "hello7"},
-                {name: "hello8"},
-                {name: "hello9"},
-                {name: "hello10"},
-                {name: "hello11"},
-                {name: "hello12"},
-                {name: "hello13"},
-                {name: "hello14"},
-                {name: "hello15"},
-                {name: "hello16"},
-                {name: "hello17"},
-            ],
-            callback: function (data, pagination) {
-                var dataHtml = '<ul>';
-                
-
-                $.each(data, function (index, item) {
-                    dataHtml += '<li>' + item.name + '</li>';
-                    console.log(dataHtml)
-                });
-
-                dataHtml += '</ul>';
-
-                $("#data-container").html(dataHtml);
-            }
-        })
-    })
+    var index = 0;
+    setIndex = n => {
+        index = n;
+        let pages = document.getElementsByClassName('postpage');
+        for(let i = 0; i < pages.length; ++i) {
+            i != n ? pages[i].style.display = 'none' :  pages[i].style.display = 'block';
+        }
+    }
+    previousPage = () => {
+        if(index > 0) setIndex(index - 1);
+    }
+    nextPage = () => {
+        let pages = document.getElementsByClassName('postpage');
+        if(index < pages.length - 1) setIndex(index + 1);
+    }
 </script>
-
-<div>
-    <section>
-        <div id="data-container" style="width: 1300px; height: 500px;"></div>
-        <div id="pagination"></div>
-    </section>
-</div>
-
 
 <div class="container">
     <div class="row">
@@ -85,25 +43,52 @@
             <% for (let i =  notices.length - 1; i >= 0; --i) { %>
                 <%- include('./element', {element : notices[i]}) %>
             <% } %>
+    
+            <!-- 일반 게시글 10개씩 묶기 -->
+            <% for (let i = 0; i < posts.length; ++i) {
+                if (i % 10 == 0) { %>
+                    <div id = 'page-<%=parseInt(i/10)%>' class='postpage'>
+                <% } %>
+                        <%- include('./element', {element : posts[i]}) %>
+                <% if (i % 10 == 9 || i == posts.length - 1) { %>
+                    </div>
+                <% }
+            } %>
+            <script> setIndex(0); </script>
 
-            <% paginate(posts, index) %>
-
-            <!-- Pager -->
-        <ul class="pagenation" style="list-style: none; padding:0px">
-            <li class="previous" style="display: inline;">
-                <button class="btn btn-primary" onclick='setIndex(-10)' style="margin:10px 0px 10px 10px; 
-                padding: 5px 15px 5px 15px; width: 110px;">
-                    previous</button>
-            </li>
-
-            <li class="next" style="display: inline;">
-                <button class="btn btn-primary float-right"  onclick='setIndex(10)' style="margin:10px 10px 10px 0px; 
-                padding: 5px 15px 5px 15px; width: 110px">
-                    N e x t</button>
-            </li>
-        </ul>
-
-
+<!--------------------- Pagination ----------------------->
+        <table>
+            <tbody>
+                <tr class="pagenation" style="list-style: none; padding:0px">
+                    <td class="previous" style="display: inline;">
+                        <button
+                            class="btn btn-primary"
+                            id='previousButton'
+                            onclick='previousPage()'
+                            style="margin:10px 0px 10px 10px; 
+                            padding: 5px 15px 5px 15px; width: 110px;">
+                            previous</button>
+                    </td>
+                    <% for (let i = 0; i < Math.ceil(posts.length / 10); ++i) { %>
+                    <td>
+                        <button onclick='setIndex("<%= i %>")'>
+                            <%= i + 1 %>
+                        </button>
+                    </td>
+                    <% } %>
+                    <td class="next" style="display: inline;">
+                        <button
+                            class="btn btn-primary float-right"
+                            id='nextButton'
+                            onclick='nextPage()'
+                            style="margin:10px 10px 10px 0px; 
+                            padding: 5px 15px 5px 15px; width: 110px"
+                        >
+                            N e x t</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
