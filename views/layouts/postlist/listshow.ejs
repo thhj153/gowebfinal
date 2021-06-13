@@ -13,15 +13,23 @@
         for(let i = 0; i < pages.length; ++i) {
             i != n ? pages[i].style.display = 'none' :  pages[i].style.display = 'block';
         }
+
+        let postion = document.getElementById('indexer');
+        postion.innerText(String(index+1) + "/" + String(blogpost.length));
+        postion.style.display = 'block';
+
     }
     previousPage = () => {
         if(index > 0) setIndex(index - 1);
     }
     nextPage = () => {
         let pages = document.getElementsByClassName('postpage');
-        if(index < pages.length - 1) setIndex(index * 1 + 1); //prevent implicit type conversion
+        if(index < pages.length - 1) setIndex(index + 1);
     }
+
 </script>
+
+
 
 <div class="container">
     <div class="row">
@@ -43,6 +51,7 @@
             <% for (let i =  notices.length - 1; i >= 0; --i) { %>
                 <%- include('./element', {element : notices[i]}) %>
             <% } %>
+
     
             <!-- 일반 게시글 10개씩 묶기 -->
             <% for (let i = 0; i < posts.length; ++i) {
@@ -59,37 +68,33 @@
 <!--------------------- Pagination ----------------------->
         <table>
             <tbody>
-                <tr class="pagenation" style="list-style: none; padding:0px">
-                    <td class="previous" style="display: inline;">
+                <div class="pagenation float-right" style="list-style: none; padding:0px; display: inline-block; margin-right: 25px;">
+                    
+                    <span class="previous" >
                         <button
                             class="btn btn-primary"
                             id='previousButton'
                             onclick='previousPage()'
-                            style="margin:10px 0px 10px 10px; 
-                            padding: 5px 15px 5px 15px; width: 110px;"
-                        >
-                            previous
-                        </button>
-                    </td>
-                    <% for (let i = 0; i < Math.ceil(posts.length / 10); ++i) { %>
-                    <td>
-                        <button onclick='setIndex("<%= i %>")'>
-                            <%= i + 1 %>
-                        </button>
-                    </td>
-                    <% } %>
-                    <td class="next" style="display: inline;">
+                            style="margin:10px 10px 10px 10px; 
+                            padding: 5px 15px 5px 15px; width: 120px;
+                            text-transform:none !important">
+                            Previous</button>
+                    </span>
+
+                    
+
                         <button
-                            class="btn btn-primary float-right"
+                            class="btn btn-primary"
                             id='nextButton'
                             onclick='nextPage()'
-                            style="margin:10px 10px 10px 0px; 
-                            padding: 5px 15px 5px 15px; width: 110px"
+                            style="margin:10px 10px 10px 10px;
+                            padding: 5px 15px 5px 15px; width: 120px;
+                            text-transform:none !important;"
                         >
-                            N e x t
-                        </button>
-                    </td>
-                </tr>
+                            Next Page</button>
+                    </span>
+                    <span id="indexer" style="font-family: SAir; font-size: 14px;"></span>
+                </div>
             </tbody>
         </table>
     </div>
