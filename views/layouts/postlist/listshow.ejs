@@ -19,7 +19,7 @@
     }
     nextPage = () => {
         let pages = document.getElementsByClassName('postpage');
-        if(index < pages.length - 1) setIndex(index + 1);
+        if(index < pages.length - 1) setIndex(index * 1 + 1); //prevent implicit type conversion
     }
 </script>
 
@@ -66,8 +66,10 @@
                             id='previousButton'
                             onclick='previousPage()'
                             style="margin:10px 0px 10px 10px; 
-                            padding: 5px 15px 5px 15px; width: 110px;">
-                            previous</button>
+                            padding: 5px 15px 5px 15px; width: 110px;"
+                        >
+                            previous
+                        </button>
                     </td>
                     <% for (let i = 0; i < Math.ceil(posts.length / 10); ++i) { %>
                     <td>
@@ -84,7 +86,8 @@
                             style="margin:10px 10px 10px 0px; 
                             padding: 5px 15px 5px 15px; width: 110px"
                         >
-                            N e x t</button>
+                            N e x t
+                        </button>
                     </td>
                 </tr>
             </tbody>
