@@ -18,17 +18,17 @@ module.exports = async (req, res) => {
           req.session.User = user;
           req.session.admin = user.admin;
           switch (user.grade) {
-            case GRADE.AMEBA:
-              user.grade = "아메바";
+            case GRADE.SAESSAK:
+              user.grade = "새싹";
               break;
-            case GRADE.GINDGI:
-              user.grade = "진드기";
+            case GRADE.NAMU:
+              user.grade = "나무";
               break;
-            case GRADE.DAKDULGI:
-              user.grade = "닭둘기";
+            case GRADE.YEOLMAE:
+              user.grade = "열매";
               break;
             default:
-              user.grade = "아메바";
+              user.grade = "새싹";
               break;
           }
           req.session.grade = user.grade;

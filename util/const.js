@@ -1,2 +1,2 @@
-const GRADE = { GINDGI: "진드기", DAKDULGI: "닭둘기", AMEBA: "아메바" };
+const GRADE = { NAMU: "나무", YEOLMAE: "열매", SAESSAK: "새싹" };
 module.exports = GRADE;
